@@ -42,6 +42,7 @@ public class CharacterSetting : MonoBehaviour
     [Header("Animation")]
     public TMP_Dropdown[] Anim_Dropdown;
 
+
     private void Awake()
     {
         if (_ins == null) _ins = this; else Destroy(gameObject);
@@ -52,6 +53,7 @@ public class CharacterSetting : MonoBehaviour
     private void Start()
     {
         LoadSettingFromFile();
+
         CharacterInitialization();
         BGM.clip = bgm[cur_bgm];
         BGM.loop = true;
@@ -121,13 +123,14 @@ public class CharacterSetting : MonoBehaviour
         });
     }
 
+    bool voice_bool = false;
     private void Update()
     {
         BGM_update();
-        if (!Voice.isPlaying)
+        if (voice_bool && !Voice.isPlaying)
         {
-            var animator = Gamespace.Characters[Profile_Dropdown.value].GetComponentInChildren<Animator>();
-            if (animator.gameObject.activeInHierarchy) animator.SetBool("isTouched", false);
+            Gamespace.Characters[Profile_Dropdown.value].GetComponentInChildren<CharacterSpriteManager>().show(-1, -1, false);
+            voice_bool = false;
         }
     }
 
@@ -151,7 +154,8 @@ public class CharacterSetting : MonoBehaviour
         if (Voice.isPlaying) return; // cooling down
         Voice.clip = Profile_Dropdown.value == 0 ? cxy.Voice_lib[Random.Range(0, cxy.Voice_lib.Count - 1)] : tmm.Voice_lib[Random.Range(0, tmm.Voice_lib.Count - 1)];
         Voice.Play();
-        Gamespace.Characters[Profile_Dropdown.value].GetComponentInChildren<Animator>().SetBool("isTouched", true);
+        voice_bool = true;
+        Gamespace.Characters[Profile_Dropdown.value].GetComponentInChildren<CharacterSpriteManager>().show(Random.Range(0, 3), -1, true);
     }
 
     public void BGM_update()
