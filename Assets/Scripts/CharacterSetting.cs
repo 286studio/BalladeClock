@@ -155,7 +155,7 @@ public class CharacterSetting : MonoBehaviour
         Voice.clip = Profile_Dropdown.value == 0 ? cxy.Voice_lib[Random.Range(0, cxy.Voice_lib.Count - 1)] : tmm.Voice_lib[Random.Range(0, tmm.Voice_lib.Count - 1)];
         Voice.Play();
         voice_bool = true;
-        Gamespace.Characters[Profile_Dropdown.value].GetComponentInChildren<CharacterSpriteManager>().show(Random.Range(0, 3), -1, true);
+        Gamespace.Characters[Profile_Dropdown.value].GetComponentInChildren<CharacterSpriteManager>().show(-2, -1, true);
     }
 
     public void BGM_update()
