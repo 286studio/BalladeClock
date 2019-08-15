@@ -1,0 +1,2 @@
+Input.touches不读鼠标
+Editor里先这样模拟
