@@ -9,6 +9,7 @@ public class AlarmList : MonoBehaviour
     public GameObject NoAlarms;
     public GameObject AlarmElementPrefab;
     public Button AddButtton;
+    public RectTransform ContentRT;
     static public List<GameObject> ui_alarmlist;
     static public float spacer = 200f;
     // Start is called before the first frame update
@@ -31,10 +32,15 @@ public class AlarmList : MonoBehaviour
     {
         if (ui_alarmlist.Count > 0) NoAlarms.gameObject.SetActive(false);
         else NoAlarms.gameObject.SetActive(true);
+
+        var size = ContentRT.sizeDelta;
+        size.y = ui_alarmlist.Count * spacer + 60;
+        ContentRT.sizeDelta = size;
+
         for (int i = 0; i < ui_alarmlist.Count; ++i)
         {
             var pos = ui_alarmlist[i].transform.localPosition;
-            pos.y = 558f - spacer * i;
+            pos.y = -100f - spacer * i;
             ui_alarmlist[i].transform.localPosition = pos;
         }
     }
@@ -96,7 +102,7 @@ public class AlarmList : MonoBehaviour
             Notifications.Id = ud.nid;
             for (int i = 0; i < ud.numAlarms; ++i)
             {
-                var newAlarm = Instantiate(AlarmElementPrefab, AppManager.Prefabs[0].transform);
+                var newAlarm = Instantiate(AlarmElementPrefab, AppManager.Prefabs[2].transform);
                 string time = (ud.hr_dp_val[i] + 1).ToString();
                 time += ":";
                 time += ud.min_dp_val[i] < 10 ? "0" + ud.min_dp_val[i] : ud.min_dp_val[i].ToString();

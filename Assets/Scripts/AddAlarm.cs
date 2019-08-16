@@ -26,7 +26,7 @@ public class AddAlarm : MonoBehaviour
     {
         // AlarmList界面设为可见
         AppManager.Prefabs[0].SetActive(true);
-        var newAlarm = Instantiate(AlarmElementPrefab, AppManager.Prefabs[0].transform);
+        var newAlarm = Instantiate(AlarmElementPrefab, AppManager.Prefabs[2].transform);
         string time = (Hour_dropdown.value + 1).ToString();
         time += ":";
         time += Minute_dropdown.value < 10 ? "0" + Minute_dropdown.value : Minute_dropdown.value.ToString();

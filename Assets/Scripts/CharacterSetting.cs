@@ -58,7 +58,7 @@ public class CharacterSetting : MonoBehaviour
         BGM.clip = bgm[cur_bgm];
         BGM.loop = true;
         BGM.volume = 0.5f;
-        BGM.Play();
+        // BGM.Play();
         Voice.clip = Profile_Dropdown.value == 0 ? cxy.Voice_lib[Voice_Dropdown[0].value] : tmm.Voice_lib[Voice_Dropdown[1].value];
         Voice.loop = false;
 
@@ -126,7 +126,7 @@ public class CharacterSetting : MonoBehaviour
     bool voice_bool = false;
     private void Update()
     {
-        BGM_update();
+        // BGM_update();
         if (voice_bool && !Voice.isPlaying)
         {
             Gamespace.Characters[Profile_Dropdown.value].GetComponentInChildren<CharacterSpriteManager>().show(-1, -1, false);
