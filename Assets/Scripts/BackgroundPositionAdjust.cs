@@ -7,10 +7,8 @@ public class BackgroundPositionAdjust : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var pos = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f));
-        pos.y = 0;
-        pos.z = 2;
-        transform.localPosition = pos;
+        var p = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f));
+        transform.position = new Vector3(-(10.24f - p.x), 1.82f, 2f);
     }
 
     // Update is called once per frame

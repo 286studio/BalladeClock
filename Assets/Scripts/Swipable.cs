@@ -21,6 +21,8 @@ public class Swipable : MonoBehaviour
 
     float EndPoint;
     Vector3 GS_EndPoint;
+    Vector3 BG_EndPoint;
+    Vector3 BG_StartPoint;
 
     static public bool external_swipe_left;
     static public bool external_swipe_right;
@@ -33,6 +35,10 @@ public class Swipable : MonoBehaviour
         pos.y = 0;
         pos.z = 0;
         GS_EndPoint = pos;
+
+        var p = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f));
+        BG_EndPoint = new Vector3(-(10.24f - p.x), 1.82f, 2f);
+        BG_StartPoint= new Vector3(0, 1.82f, 2f);
 
         rt = GetComponent<RectTransform>();
         moving = Moving.None;
@@ -136,6 +142,7 @@ public class Swipable : MonoBehaviour
 
         // deal with game space
         GameSpace.transform.position = Vector3.Lerp(Vector3.zero, GS_EndPoint, fracJourney);
+        Gamespace.Background.transform.position = Vector3.Lerp(BG_StartPoint, BG_EndPoint, fracJourney);
         CharacterSetting._ins.disappear();
     }
 
@@ -158,5 +165,6 @@ public class Swipable : MonoBehaviour
 
         // deal with game space
         GameSpace.transform.position = Vector3.Lerp(GS_EndPoint, Vector3.zero, fracJourney);
+        Gamespace.Background.transform.position = Vector3.Lerp(BG_EndPoint, BG_StartPoint, fracJourney);
     }
 }
