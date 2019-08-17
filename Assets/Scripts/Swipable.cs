@@ -22,6 +22,9 @@ public class Swipable : MonoBehaviour
     float EndPoint;
     Vector3 GS_EndPoint;
 
+    static public bool external_swipe_left;
+    static public bool external_swipe_right;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,8 @@ public class Swipable : MonoBehaviour
         mv_pos = Moving.Right;
         Right.GetComponent<RectTransform>().anchoredPosition = new Vector3(AppManager.AdjustedWidth, 0, 0);
         Left.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        external_swipe_left = false;
+        external_swipe_right = false;
     }
 
     // Update is called once per frame
@@ -79,6 +84,11 @@ public class Swipable : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.A)) return true;
 #endif
+        if (external_swipe_left)
+        {
+            external_swipe_left = false;
+            return true;
+        }
 
         foreach (Touch touch in Input.touches)
         {
@@ -93,6 +103,12 @@ public class Swipable : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.S)) return true;
 #endif
+        if (external_swipe_right)
+        {
+            external_swipe_right = false;
+            return true;
+        }
+
         foreach (Touch touch in Input.touches)
         {
             return touch.deltaPosition.x / touch.deltaTime > 2000;

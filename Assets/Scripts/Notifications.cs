@@ -12,6 +12,24 @@ public class Notifications : MonoBehaviour
     public static int Id;
     public AudioSource SoundPlayer;
 
+    static string[] characterNames =
+    {
+        "陈星瑶",
+        "谈明美"
+    };
+
+    static string[] soundFileNames =
+    {
+        "cxy_alarm1.wav",
+        "tmm_alarm1.wav"
+    };
+
+    static string[] CategoryIdentifiers =
+    {
+        "cxy",
+        "tmm"
+    };
+
     string curRespondNotificationIdentifier;
 
     static string[] bodyStrings = {
@@ -49,8 +67,6 @@ public class Notifications : MonoBehaviour
                 if (System.DateTime.Now.Hour == t.Hour && System.DateTime.Now.Minute == t.Minute)
                 {
                     float curSec = System.DateTime.Now.Second + System.DateTime.Now.Millisecond / 1000f;
-                    Debug.Log("Second: " + curSec);
-                    Debug.Log("Sound Length: " + SoundPlayer.clip.length);
                     if (curSec < SoundPlayer.clip.length)
                     {
                         SoundPlayer.time = curSec;
@@ -93,15 +109,15 @@ public class Notifications : MonoBehaviour
             // used to cancel the notification, if you don't set one, a unique 
             // string will be generated automatically.
             Identifier = prefix + Id.ToString(),
-            Title = CharacterSetting._ins.curCharacter == 0 ? "陈星瑶" : "谭明美",
+            Title = characterNames[CharacterSetting._ins.curCharacter],
             Subtitle = "你的闹钟【" + (label.Length > 0 ? label : "Alarm") + "】到点了！",
             Body = bodyStrings[Random.Range(0, bodyStrings.Length - 1)],
             ShowInForeground = true,
             ForegroundPresentationOption = PresentationOption.None,
-            CategoryIdentifier = CharacterSetting._ins.curCharacter == 0 ? "cxy" : "tmm",
+            CategoryIdentifier = CategoryIdentifiers[CharacterSetting._ins.curCharacter],
             ThreadIdentifier = "thread1",
             Trigger = timeTrigger,
-            Data = "" // TODO
+            Data = soundFileNames[CharacterSetting._ins.curCharacter]
         };
         iOSNotificationCenter.ScheduleNotification(notification);
         return Id++;

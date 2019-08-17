@@ -27,7 +27,7 @@ public class CharacterSpriteManager : MonoBehaviour
     SpriteRenderer face_sr;
     float[] keyframes = {12, 2, 2, 4, 190, 2, 2, 4, 190, 2, 2, 4};
     float sample_rate = 30;
-    int face_is_red = 0;
+    int expression = 0;
     int keyframe_idx = 0;
     int anim_idx = 0;
     int pose_idx = 0;
@@ -53,7 +53,7 @@ public class CharacterSpriteManager : MonoBehaviour
     private void Update()
     {
         // animate face
-        face_sr.sprite = faces[face_is_red][pose_idx][anim_idx];
+        face_sr.sprite = faces[expression][pose_idx][anim_idx];
         if (Time.time - anim_time > keyframes[keyframe_idx] / sample_rate)
         {
             anim_time = Time.time;
@@ -62,9 +62,9 @@ public class CharacterSpriteManager : MonoBehaviour
         }
     }
 
-    public void show(int pose, int costumes, bool touched)
+    public void show(int pose, int costumes, int touched)
     {
-        face_is_red = touched ? 1 : 0;
+        if (touched > 0) expression = touched;
         if (pose > 0) pose_idx = pose;
         if (pose == -2) pose_idx = (pose_idx + Random.Range(1, 3)) % 4;
         if (costumes > 0) costumes_idx = costumes;
