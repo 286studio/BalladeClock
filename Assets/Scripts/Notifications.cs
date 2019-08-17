@@ -93,15 +93,15 @@ public class Notifications : MonoBehaviour
             // used to cancel the notification, if you don't set one, a unique 
             // string will be generated automatically.
             Identifier = prefix + Id.ToString(),
-            Title = CharacterSetting._ins.Profile_Dropdown.value == 0 ? "陈星瑶" : "谭明美",
+            Title = CharacterSetting._ins.curCharacter == 0 ? "陈星瑶" : "谭明美",
             Subtitle = "你的闹钟【" + (label.Length > 0 ? label : "Alarm") + "】到点了！",
             Body = bodyStrings[Random.Range(0, bodyStrings.Length - 1)],
             ShowInForeground = true,
             ForegroundPresentationOption = PresentationOption.None,
-            CategoryIdentifier = CharacterSetting._ins.Profile_Dropdown.value == 0 ? "cxy" : "tmm",
+            CategoryIdentifier = CharacterSetting._ins.curCharacter == 0 ? "cxy" : "tmm",
             ThreadIdentifier = "thread1",
             Trigger = timeTrigger,
-            Data = (CharacterSetting._ins.Profile_Dropdown.value == 0 ? "x" : "m") + (CharacterSetting._ins.Voice_Dropdown[CharacterSetting._ins.Profile_Dropdown.value].value + 1).ToString() + ".wav"
+            Data = "" // TODO
         };
         iOSNotificationCenter.ScheduleNotification(notification);
         return Id++;

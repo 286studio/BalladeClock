@@ -35,7 +35,7 @@ public class AddAlarm : MonoBehaviour
 
         var ae = newAlarm.GetComponent<AlarmElement>();
         ae.TimeString.text = time;
-        ae.profile_idx = CharacterSetting._ins.Profile_Dropdown.value;
+        ae.profile_idx = CharacterSetting._ins.curCharacter;
         ae.Profile.sprite = ae.profile_sprites[ae.profile_idx];
         ae.hr_dp_val = Hour_dropdown.value;
         ae.min_dp_val = Minute_dropdown.value;

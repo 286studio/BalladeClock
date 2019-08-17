@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 
 public class CharacterSetting : MonoBehaviour
 {
     public static CharacterSetting _ins;
-
-    // Reference to Setting button and Setting page
-    [Header("Buttons")]
-    public Button SettingButton;
-    public Button AcceptButton;
-    public Button CancelButton;
-    public GameObject SettingPage;
     public GameObject Interactive;
+    public GameObject CharacterSelectUI;
+    public Button[] Buttons; // 0 = bg, 1 = alarm, 2 = character change
+
+    const int numCharacter = 2;
+    public int curCharacter; // 0 = cxy, 1 = tmm
+    int curBG;
 
     // background related
     [Header("Background")]
     public Sprite[] BG_sprites;
-    public TMP_Dropdown BG_dropdown;
 
     //CharacterInitializtion
     public Character cxy = new Character();
@@ -31,17 +28,6 @@ public class CharacterSetting : MonoBehaviour
     AudioSource BGM;
     public AudioSource Voice;
     public int cur_bgm = 0;
-    public TMP_Dropdown BGM_Dropdown;
-    public TMP_Dropdown[] Voice_Dropdown;
-
-    [Header("Profile")]
-    public TMP_Dropdown Profile_Dropdown;
-    public Image Profile_Image;
-    public Sprite[] Profile_Sprites;
-
-    [Header("Animation")]
-    public TMP_Dropdown[] Anim_Dropdown;
-
 
     private void Awake()
     {
@@ -59,77 +45,23 @@ public class CharacterSetting : MonoBehaviour
         BGM.loop = true;
         BGM.volume = 0.5f;
         // BGM.Play();
-        Voice.clip = Profile_Dropdown.value == 0 ? cxy.Voice_lib[Voice_Dropdown[0].value] : tmm.Voice_lib[Voice_Dropdown[1].value];
+        Voice.clip = curCharacter == 0 ? cxy.Voice_lib[0] : tmm.Voice_lib[0];
         Voice.loop = false;
 
-        print((Profile_Dropdown.value == 0 ? "x" : "m") + (Voice_Dropdown[Profile_Dropdown.value].value + 1).ToString() + ".wav");
-        // page settings
-        // setting page hidden at start
-        // setting button shown at start
-        SettingButton.gameObject.SetActive(true);
-        SettingPage.gameObject.SetActive(false);
-
-        // link setting buttons to functions
-        SettingButton.onClick.AddListener(delegate {
-            SettingPage.gameObject.SetActive(true);
-            SettingButton.gameObject.SetActive(false);
-        });
-
-        AcceptButton.onClick.AddListener(delegate {
-            // apply changes
-            // background change
-            Gamespace.Background.GetComponent<SpriteRenderer>().sprite = BG_sprites[BG_dropdown.value];
-            if (Profile_Dropdown.value == 0)
-            {
-                Gamespace.Characters[0].SetActive(true);
-                Gamespace.Characters[1].SetActive(false);
-            }
-            // profile change
-            else if (Profile_Dropdown.value == 1)
-            {
-                Gamespace.Characters[0].SetActive(false);
-                Gamespace.Characters[1].SetActive(true);
-            }
-            // voice change
-            Voice.clip = Profile_Dropdown.value == 0 ? cxy.Voice_lib[Voice_Dropdown[0].value] : tmm.Voice_lib[Voice_Dropdown[1].value];
-
-            SaveSettingToFile();
-            SettingButton.gameObject.SetActive(true);
-            SettingPage.gameObject.SetActive(false);
-        });
-
-        CancelButton.onClick.AddListener(delegate {
-            SettingButton.gameObject.SetActive(true);
-            SettingPage.gameObject.SetActive(false);
-        });
-
-        // when changing profile, change the color of the name
-        Profile_Dropdown.onValueChanged.AddListener(delegate { onCharacterChange(); });
-
-        // when changing voice, play it once
-        Voice_Dropdown[0].onValueChanged.AddListener(delegate
-        {
-            var audsrc = gameObject.AddComponent<AudioSource>();
-            audsrc.clip = cxy.Voice_lib[Voice_Dropdown[0].value];
-            audsrc.Play();
-            Destroy(audsrc, audsrc.clip.length);
-        });
-        Voice_Dropdown[1].onValueChanged.AddListener(delegate
-        {
-            var audsrc = gameObject.AddComponent<AudioSource>();
-            audsrc.clip = tmm.Voice_lib[Voice_Dropdown[1].value];
-            audsrc.Play();
-            Destroy(audsrc, audsrc.clip.length);
-        });
+        // new UI
+        Buttons[2].onClick.AddListener(delegate {
+            CharacterSelectUI.GetComponent<Animator>().SetBool("open", true);
+            Buttons[2].gameObject.SetActive(false);
+            Buttons[1].gameObject.SetActive(false);
+	    });
     }
 
     bool voice_bool = false;
     private void Update()
     {
-        // BGM_update();
         if (voice_bool && !Voice.isPlaying)
         {
-            Gamespace.Characters[Profile_Dropdown.value].GetComponentInChildren<CharacterSpriteManager>().show(-1, -1, false);
+            Gamespace.Characters[curCharacter].GetComponentInChildren<CharacterSpriteManager>().show(-1, -1, false);
             voice_bool = false;
         }
     }
@@ -152,67 +84,29 @@ public class CharacterSetting : MonoBehaviour
     public void Character_touched()
     {
         if (Voice.isPlaying) return; // cooling down
-        Voice.clip = Profile_Dropdown.value == 0 ? cxy.Voice_lib[Random.Range(0, cxy.Voice_lib.Count - 1)] : tmm.Voice_lib[Random.Range(0, tmm.Voice_lib.Count - 1)];
+        Voice.clip = curCharacter == 0 ? cxy.Voice_lib[Random.Range(0, cxy.Voice_lib.Count - 1)] : tmm.Voice_lib[Random.Range(0, tmm.Voice_lib.Count - 1)];
         Voice.Play();
         voice_bool = true;
-        Gamespace.Characters[Profile_Dropdown.value].GetComponentInChildren<CharacterSpriteManager>().show(-2, -1, true);
-    }
+        Gamespace.Characters[curCharacter].GetComponentInChildren<CharacterSpriteManager>().show(-2, -1, true);
 
-    public void BGM_update()
-    {
-        if(cur_bgm!= BGM_Dropdown.value)
-        {
-            cur_bgm = BGM_Dropdown.value;
-            BGM.Stop();
-            BGM.clip = bgm[cur_bgm];
-            BGM.Play();
-        }
+
+        CharacterSelectUI.GetComponent<Animator>().SetBool("open", false);
+        Buttons[2].gameObject.SetActive(true);
+        Buttons[1].gameObject.SetActive(true);
     }
 
     public void switchCharacter(int idx)
     {
-        Profile_Dropdown.value = idx;
-        if (Profile_Dropdown.value == 0)
-        {
-            Gamespace.Characters[0].SetActive(true);
-            Gamespace.Characters[1].SetActive(false);
-        }
-        // profile change
-        else if (Profile_Dropdown.value == 1)
-        {
-            Gamespace.Characters[0].SetActive(false);
-            Gamespace.Characters[1].SetActive(true);
-        }
-    }
-
-    void onCharacterChange()
-    {
-        Profile_Image.sprite = Profile_Sprites[Profile_Dropdown.value];
-        if (Profile_Dropdown.value == 0)
-            Profile_Dropdown.GetComponent<Image>().color = new Color(1, 66f / 255f, 66f / 255f, 148f / 255f);
-        else if (Profile_Dropdown.value == 1)
-            Profile_Dropdown.GetComponent<Image>().color = new Color(66f / 255f, 66f / 255f, 1, 148f / 255f);
-
-
-        Voice_Dropdown[Profile_Dropdown.value].gameObject.SetActive(true);
-        Anim_Dropdown[Profile_Dropdown.value].gameObject.SetActive(true);
-        Voice_Dropdown[Profile_Dropdown.value == 0 ? 1 : 0].gameObject.SetActive(false);
-        Anim_Dropdown[Profile_Dropdown.value == 0 ? 1 : 0].gameObject.SetActive(false);
+        curCharacter = idx;
+        Gamespace.Characters[curCharacter].SetActive(true);
+        for (int i = 0; i < numCharacter; ++i) if (curCharacter != i) Gamespace.Characters[i].SetActive(false);
     }
 
     void SaveSettingToFile()
     {
         _SettingUserData ud = new _SettingUserData();
-        ud.character = Profile_Dropdown.value;
-
-        ud.voice = new int[Voice_Dropdown.Length];
-        for (int i = 0; i < Voice_Dropdown.Length; ++i) ud.voice[i] = Voice_Dropdown[i].value;
-
-        ud.anim = new int[Anim_Dropdown.Length];
-        for (int i = 0; i < Anim_Dropdown.Length; ++i) ud.anim[i] = Anim_Dropdown[i].value;
-
-        ud.bg = BG_dropdown.value;
-        ud.bgm = BGM_Dropdown.value;
+        ud.character = curCharacter;
+        ud.bg = curBG;
         SaveSystem.SaveSettingUserData(ud);
     }
 
@@ -224,30 +118,21 @@ public class CharacterSetting : MonoBehaviour
             Debug.Log("No file");
             ud = new _SettingUserData();
             ud.character = 0;
-            ud.voice = new int[] { 0, 0 };
-            ud.anim = new int[] { 0, 0 };
+            ud.voice = new int[] { 0, 0 }; // no use
+            ud.anim = new int[] { 0, 0 }; // no use
             ud.bg = 0;
-            ud.bgm = 0;
+            ud.bgm = 0; // no use
         }
         // apply changes
-        Profile_Dropdown.value = ud.character;
-        onCharacterChange();
-        for (int i = 0; i < Voice_Dropdown.Length; ++i) Voice_Dropdown[i].value = ud.voice[i];
-        for (int i = 0; i < Anim_Dropdown.Length; ++i) Anim_Dropdown[i].value = ud.anim[i];
-        BG_dropdown.value = ud.bg;
-        BGM_Dropdown.value = ud.bgm;
+        switchCharacter(ud.character);
+        curBG = ud.bg;
+        Gamespace.Background.GetComponent<SpriteRenderer>().sprite = BG_sprites[curBG];
+    }
 
-        Gamespace.Background.GetComponent<SpriteRenderer>().sprite = BG_sprites[BG_dropdown.value];
-        if (Profile_Dropdown.value == 0)
-        {
-            Gamespace.Characters[0].SetActive(true);
-            Gamespace.Characters[1].SetActive(false);
-        }
-        // profile change
-        else if (Profile_Dropdown.value == 1)
-        {
-            Gamespace.Characters[0].SetActive(false);
-            Gamespace.Characters[1].SetActive(true);
-        }
+    public void disappear()
+    {
+        CharacterSelectUI.GetComponent<Animator>().SetBool("open", false);
+        Buttons[2].gameObject.SetActive(true);
+        Buttons[1].gameObject.SetActive(true);
     }
 }

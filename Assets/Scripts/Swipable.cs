@@ -120,6 +120,7 @@ public class Swipable : MonoBehaviour
 
         // deal with game space
         GameSpace.transform.position = Vector3.Lerp(Vector3.zero, GS_EndPoint, fracJourney);
+        CharacterSetting._ins.disappear();
     }
 
     void moveRight()
