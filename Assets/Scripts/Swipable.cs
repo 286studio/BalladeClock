@@ -16,6 +16,7 @@ public class Swipable : MonoBehaviour
     public Moving mv_pos;
 
     float startTime = -1;
+    bool click = false;
     public float speed = 3000F;
 
 
@@ -83,6 +84,11 @@ public class Swipable : MonoBehaviour
             }
         }
     }
+    public void ml()
+    {
+        moving = Moving.Right;
+        startTime = Time.time;
+    }
 
     bool swipeLeft()
     {
@@ -122,7 +128,7 @@ public class Swipable : MonoBehaviour
         return false;
     }
 
-    void moveLeft()
+    public void moveLeft()
     {
         // deal with canvas space
         // Distance moved = time * speed.

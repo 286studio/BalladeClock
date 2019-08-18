@@ -50,7 +50,7 @@ public class CharacterSetting : MonoBehaviour
     private void Start()
     {
         LoadSettingFromFile();
-
+        Buttons[3].gameObject.SetActive(false);
         CharacterInitialization();
         BGM.clip = bgm[cur_bgm];
         BGM.loop = true;
@@ -74,10 +74,17 @@ public class CharacterSetting : MonoBehaviour
 
         Buttons[2].onClick.AddListener(delegate {
             CharacterSelectUI.GetComponent<Animator>().SetBool("open", true);
+            Buttons[3].gameObject.SetActive(true);
             Buttons[2].gameObject.SetActive(false);
             Buttons[1].gameObject.SetActive(false);
 	    });
-
+        Buttons[3].onClick.AddListener(delegate {
+            CharacterSelectUI.GetComponent<Animator>().SetBool("open", false);
+            CostumeSelectUI.GetComponent<Animator>().SetBool("open", false);
+            Buttons[3].gameObject.SetActive(false);
+            Buttons[2].gameObject.SetActive(true);
+            Buttons[1].gameObject.SetActive(true);
+        });
         for (int i = 0; i < numCharacter; ++i)
         {
             int j = i;

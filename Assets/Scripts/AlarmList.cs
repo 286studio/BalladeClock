@@ -9,6 +9,7 @@ public class AlarmList : MonoBehaviour
     public GameObject NoAlarms;
     public GameObject AlarmElementPrefab;
     public Button AddButtton;
+    public Button Return;
     public RectTransform ContentRT;
     static public List<GameObject> ui_alarmlist;
     static public float spacer = 200f;
