@@ -30,14 +30,14 @@ public class Min_content : MonoBehaviour
         // 首尾相接效果
         if (rt.anchoredPosition.y < 300f) rt.anchoredPosition += new Vector2(0, 9000f);
         if (rt.anchoredPosition.y > 9450f) rt.anchoredPosition -= new Vector2(0, 9000f);
-    }
 
-    void Update()
-    {
         // 中间数字趋向居中
         var pos = rt.anchoredPosition3D;
         var target = new Vector3(0, ((int)pos.y + 75) / 150 * 150);
-        rt.anchoredPosition3D = Vector3.MoveTowards(rt.anchoredPosition3D, target, 2f);
-        // min_val = ??? TODO
+        rt.anchoredPosition3D = Vector3.MoveTowards(rt.anchoredPosition3D, target, 50 * Time.fixedDeltaTime);
+
+        // 当前分
+        min_val = ((int)pos.y + 75) / 150 - 2;
+        if (min_val == 60) min_val = 0;
     }
 }
