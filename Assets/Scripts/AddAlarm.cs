@@ -12,7 +12,6 @@ public class AddAlarm : MonoBehaviour
     public Dropdown AMPM_dropdown; // AM, PM
     public Dropdown Repeat_dropdown; // Never, daily
     public InputField Label_input; // input field
-    public Toggle SnoozeToggle; // snooze or not
     public Button submitButton;
     public Button cancelButton;
     // Start is called before the first frame update
@@ -42,7 +41,6 @@ public class AddAlarm : MonoBehaviour
         ae.ampm_dp_val = AMPM_dropdown.value;
         ae.repeat_dp_val = Repeat_dropdown.value;
         ae.label_if_val = Label_input.text;
-        ae.snooze_tg_val = SnoozeToggle.isOn;
         ae.Id = Notifications.AddAlarm(ae.hr_dp_val + 1, ae.min_dp_val, ae.ampm_dp_val, ae.repeat_dp_val == 0, ae.label_if_val);
 
         // add the alarm to list

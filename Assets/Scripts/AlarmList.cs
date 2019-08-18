@@ -75,7 +75,7 @@ public class AlarmList : MonoBehaviour
                 ud.min_dp_val[i] = ae_comp.min_dp_val;
                 ud.ampm_dp_val[i] = ae_comp.ampm_dp_val;
                 ud.repeat_dp_val[i] = ae_comp.repeat_dp_val;
-                ud.snooze_tg_val[i] = ae_comp.snooze_tg_val;
+                //ud.snooze_tg_val[i] = ae_comp.snooze_tg_val;
                 ud.label_if_val[i] = ae_comp.label_if_val;
             }
         }
@@ -118,7 +118,7 @@ public class AlarmList : MonoBehaviour
                 ae.min_dp_val = ud.min_dp_val[i];
                 ae.ampm_dp_val = ud.ampm_dp_val[i];
                 ae.repeat_dp_val = ud.repeat_dp_val[i];
-                ae.snooze_tg_val = ud.snooze_tg_val[i];
+                //ae.snooze_tg_val = ud.snooze_tg_val[i];
                 ae.label_if_val = ud.label_if_val[i];
                 ui_alarmlist.Add(newAlarm);
             }

@@ -13,7 +13,6 @@ public class EditAlarm : MonoBehaviour
     public Dropdown AMPM_dropdown; // AM, PM
     public Dropdown Repeat_dropdown; // Never, daily
     public InputField Label_input; // input field
-    public Toggle SnoozeToggle; // snooze or not
 
     public void submitButtonClick()
     {
@@ -33,7 +32,6 @@ public class EditAlarm : MonoBehaviour
         EditingAlarm.ampm_dp_val = AMPM_dropdown.value;
         EditingAlarm.repeat_dp_val = Repeat_dropdown.value;
         EditingAlarm.label_if_val = Label_input.text;
-        EditingAlarm.snooze_tg_val = SnoozeToggle.isOn;
 
         // handle notification
         // cancel the old one

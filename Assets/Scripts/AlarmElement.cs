@@ -21,14 +21,17 @@ public class AlarmElement : MonoBehaviour
     public int ampm_dp_val;
     public int repeat_dp_val;
     public string label_if_val;
-    public bool snooze_tg_val;
 
     public int Id;
+
+    private void Awake()
+    {
+        AdjustToScreenRatio();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        //AdjustToScreenRatio();
         Edit_button.onClick.AddListener(Edit_button_click);
         X_button.onClick.AddListener(X_button_click);
     }
@@ -44,7 +47,6 @@ public class AlarmElement : MonoBehaviour
         comp.AMPM_dropdown.value = ampm_dp_val;
         comp.Repeat_dropdown.value = repeat_dp_val;
         comp.Label_input.text = label_if_val;
-        comp.SnoozeToggle.isOn = snooze_tg_val;
         AppManager.Prefabs[0].gameObject.SetActive(false);
     }
 
@@ -61,7 +63,7 @@ public class AlarmElement : MonoBehaviour
         Destroy(gameObject);
     }
 
-    const float outline_ratio = 1840f / 365f; // ratio of the image
+    const float outline_ratio = 2010f / 474f; // ratio of the image
     public void AdjustToScreenRatio()
     {
         var rt = GetComponent<RectTransform>();
@@ -69,6 +71,8 @@ public class AlarmElement : MonoBehaviour
         var oldSize = rt.sizeDelta;
         var ratio = newSzie.x / oldSize.x;
         rt.sizeDelta = newSzie;
+
+        AlarmList.spacer = 200f * ratio;
 
         var profile_rt = Profile.GetComponent<RectTransform>();
         profile_rt.anchoredPosition *= ratio;

@@ -149,7 +149,7 @@ public class CharacterSetting : MonoBehaviour
     public void CostumeButtonPrtessed(int idx)
     {
         Gamespace.Characters[curCharacter].GetComponent<CharacterSpriteManager>().show(-1, idx, -1);
-        disappear();
+        Character_touched();
     }
 
     void SaveSettingToFile()

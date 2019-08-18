@@ -64,10 +64,10 @@ public class CharacterSpriteManager : MonoBehaviour
 
     public void show(int pose, int costumes, int touched)
     {
-        if (touched > 0) expression = touched;
-        if (pose > 0) pose_idx = pose;
+        if (touched >= 0) expression = touched;
+        if (pose >= 0) pose_idx = pose;
         if (pose == -2) pose_idx = (pose_idx + Random.Range(1, 3)) % 4;
-        if (costumes > 0) costumes_idx = costumes;
+        if (costumes >= 0) costumes_idx = costumes;
         Figure.GetComponent<SpriteRenderer>().sprite = sprites[pose_idx][costumes_idx];
         Face.GetComponent<RectTransform>().anchoredPosition = facePositions[pose_idx];
     }
