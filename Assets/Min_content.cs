@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Min_content : MonoBehaviour
 {
     public GameObject minutes_text;
-    public int min_val; // TODO
+    int min_val; // TODO
     RectTransform rt;
 
     // Start is called before the first frame update
@@ -20,11 +20,10 @@ public class Min_content : MonoBehaviour
             var min = Instantiate(minutes_text, transform);
             min.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 4875f - 150f * (k + 3));
             min.GetComponent<Text>().text = i < 10 ? "0" + i : i.ToString();
-            rt.anchoredPosition = new Vector2(0, 3000);
         }
+        setMinuteValue(0);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         // 首尾相接效果
@@ -39,5 +38,16 @@ public class Min_content : MonoBehaviour
         // 当前分
         min_val = ((int)pos.y + 75) / 150 - 2;
         if (min_val == 60) min_val = 0;
+    }
+
+    public int getMinuteValue()
+    {
+        return min_val;
+    }
+
+    public void setMinuteValue(int m)
+    {
+        min_val = m;
+        rt.anchoredPosition = new Vector2(0, m * 150f + 300f);
     }
 }
