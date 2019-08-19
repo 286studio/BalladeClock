@@ -10,7 +10,7 @@ public class Hr_content : MonoBehaviour
     RectTransform rt;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rt = GetComponent<RectTransform>();
         for (int k = -2; k < 16; ++k)
@@ -21,7 +21,7 @@ public class Hr_content : MonoBehaviour
             min.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 1275f - 150f * (k + 2));
             min.GetComponent<Text>().text = i < 10 ? "0" + i : i.ToString();
         }
-        setHourValue(12);
+        setValue(12);
     }
 
     void FixedUpdate()
@@ -40,12 +40,12 @@ public class Hr_content : MonoBehaviour
         if (hr_val == 0) hr_val = 12;
     }
 
-    public int getHourValue()
+    public int getValue()
     {
         return hr_val;
     }
 
-    public void setHourValue(int h)
+    public void setValue(int h)
     {
         hr_val = h;
         rt.anchoredPosition = new Vector2(0, h * 150f + 150f);

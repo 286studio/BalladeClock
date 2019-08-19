@@ -97,6 +97,7 @@ MonoBehaviour:
   Profile: {fileID: 7920693989799517375}
   profile_sprites:
   - {fileID: 21300000, guid: 9f2dea5675ff64d77bd32ba03731aa19, type: 3}
+  - {fileID: 21300000, guid: 9f2dea5675ff64d77bd32ba03731aa19, type: 3}
   - {fileID: 21300000, guid: 253aebf55ae5147c696270aedf5ae697, type: 3}
   TimeString: {fileID: 2221472289083113702}
   Edit_button: {fileID: 6489470588327120204}
@@ -106,8 +107,8 @@ MonoBehaviour:
   min_dp_val: 0
   ampm_dp_val: 0
   repeat_dp_val: 0
+  ringer_dp_val: 0
   label_if_val: 
-  snooze_tg_val: 0
   Id: 0
 --- !u!1 &2063996725422087431
 GameObject:

@@ -7,10 +7,11 @@ using Unity.Notifications.iOS;
 public class AddAlarm : MonoBehaviour
 {
     public GameObject AlarmElementPrefab;
-    public Dropdown Hour_dropdown; // 1 ~ 12
-    public Dropdown Minute_dropdown; // 0 ~ 59
-    public Dropdown AMPM_dropdown; // AM, PM
+    public Hr_content Hour_dropdown; // 1 ~ 12
+    public Min_content Minute_dropdown; // 0 ~ 59
+    public AMPM_content AMPM_dropdown; // AM, PM
     public Dropdown Repeat_dropdown; // Never, daily
+    public Dropdown Ringer_drowndown;
     public InputField Label_input; // input field
     public Button submitButton;
     public Button cancelButton;
@@ -26,22 +27,23 @@ public class AddAlarm : MonoBehaviour
         // AlarmList界面设为可见
         AppManager.Prefabs[0].SetActive(true);
         var newAlarm = Instantiate(AlarmElementPrefab, AppManager.Prefabs[2].transform);
-        string time = (Hour_dropdown.value + 1).ToString();
+
+        string time = (AMPM_dropdown.getValue() == 0) ? "上午 " : "下午 ";
+        time += Hour_dropdown.getValue().ToString();
         time += ":";
-        time += Minute_dropdown.value < 10 ? "0" + Minute_dropdown.value : Minute_dropdown.value.ToString();
-        time += " ";
-        time += (AMPM_dropdown.value == 0) ? "AM" : "PM";
+        time += Minute_dropdown.getValue() < 10 ? "0" + Minute_dropdown.getValue() : Minute_dropdown.getValue().ToString();
 
         var ae = newAlarm.GetComponent<AlarmElement>();
         ae.TimeString.text = time;
         ae.profile_idx = CharacterSetting._ins.curCharacter;
-        ae.Profile.sprite = ae.profile_sprites[ae.profile_idx];
-        ae.hr_dp_val = Hour_dropdown.value;
-        ae.min_dp_val = Minute_dropdown.value;
-        ae.ampm_dp_val = AMPM_dropdown.value;
+        ae.ringer_dp_val = Ringer_drowndown.value;
+        ae.Profile.sprite = ae.profile_sprites[ae.ringer_dp_val];
+        ae.hr_dp_val = Hour_dropdown.getValue();
+        ae.min_dp_val = Minute_dropdown.getValue();
+        ae.ampm_dp_val = AMPM_dropdown.getValue();
         ae.repeat_dp_val = Repeat_dropdown.value;
         ae.label_if_val = Label_input.text;
-        ae.Id = Notifications.AddAlarm(ae.hr_dp_val + 1, ae.min_dp_val, ae.ampm_dp_val, ae.repeat_dp_val == 0, ae.label_if_val);
+        ae.Id = Notifications.AddAlarm(ae.hr_dp_val, ae.min_dp_val, ae.ampm_dp_val, ae.repeat_dp_val == 0, ae.label_if_val, ae.ringer_dp_val);
 
         // add the alarm to list
         AlarmList.ui_alarmlist.Add(newAlarm);

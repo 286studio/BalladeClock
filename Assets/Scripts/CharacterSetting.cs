@@ -23,6 +23,7 @@ public class CharacterSetting : MonoBehaviour
     const int numCharacter = 2;
     [HideInInspector]
     public int curCharacter; // 0 = cxy, 1 = tmm
+    public int curCostume;
     int curBG;
     [SerializeField] Vector3[] BG_offsets;
 
@@ -66,6 +67,7 @@ public class CharacterSetting : MonoBehaviour
         Buttons[0].onClick.AddListener(delegate {
             curBG = (curBG + 1) % BG_sprites.Length;
             Gamespace.Background.GetComponent<SpriteRenderer>().sprite = BG_sprites[curBG];
+            SaveSettingToFile();
         });
 
         Buttons[1].onClick.AddListener(delegate {
@@ -121,6 +123,11 @@ public class CharacterSetting : MonoBehaviour
     public void Character_touched()
     {
         if (Voice.isPlaying) return; // cooling down
+        if (Notifications.SoundPlayer != null && Notifications.SoundPlayer.isPlaying)
+        {
+            Notifications.SoundPlayer.Stop();
+            return;
+        }
         Voice.clip = curCharacter == 0 ? cxy.Voice_lib[Random.Range(0, cxy.Voice_lib.Count - 1)] : tmm.Voice_lib[Random.Range(0, tmm.Voice_lib.Count - 1)];
         Voice.Play();
         voice_bool = true;
@@ -134,6 +141,7 @@ public class CharacterSetting : MonoBehaviour
         curCharacter = idx;
         Gamespace.Characters[curCharacter].SetActive(true);
         for (int i = 0; i < numCharacter; ++i) if (curCharacter != i) Gamespace.Characters[i].SetActive(false);
+        SaveSettingToFile();
     }
 
     public void CharacterButtonPressed(int idx)
@@ -148,7 +156,9 @@ public class CharacterSetting : MonoBehaviour
 
     public void CostumeButtonPrtessed(int idx)
     {
+        curCostume = idx;
         Gamespace.Characters[curCharacter].GetComponent<CharacterSpriteManager>().show(-1, idx, -1);
+        SaveSettingToFile();
         Character_touched();
     }
 
@@ -156,6 +166,7 @@ public class CharacterSetting : MonoBehaviour
     {
         _SettingUserData ud = new _SettingUserData();
         ud.character = curCharacter;
+        ud.costume = curCostume;
         ud.bg = curBG;
         SaveSystem.SaveSettingUserData(ud);
     }
@@ -168,13 +179,13 @@ public class CharacterSetting : MonoBehaviour
             Debug.Log("No file");
             ud = new _SettingUserData();
             ud.character = 0;
-            ud.voice = new int[] { 0, 0 }; // no use
-            ud.anim = new int[] { 0, 0 }; // no use
+            ud.costume = 0;
             ud.bg = 0;
-            ud.bgm = 0; // no use
         }
         // apply changes
         switchCharacter(ud.character);
+        curCostume = ud.costume;
+        Gamespace.Characters[curCharacter].GetComponent<CharacterSpriteManager>().show(-1, curCostume, -1);
         curBG = ud.bg;
         Gamespace.Background.GetComponent<SpriteRenderer>().sprite = BG_sprites[curBG];
     }

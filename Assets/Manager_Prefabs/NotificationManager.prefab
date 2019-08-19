@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10656ef035dfa489e85fe59ac230ccc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testObj: {fileID: 888819343478589963, guid: 416ccb1b2f171455ba28f5c6f7b1f2eb, type: 3}
-  testObj2: {fileID: 888819343478589963, guid: a55f8ef9d9ced453daca1d93dcc46f12, type: 3}
   SoundPlayer: {fileID: 0}
+  Ringers:
+  - {fileID: 8300000, guid: 2fa9b77a2232347d2b31d749ebd9f44c, type: 3}
+  - {fileID: 8300000, guid: dedaabce91bef48ba90c0add8b0dcc54, type: 3}
+  - {fileID: 8300000, guid: 600231965a92549049ec9eeb7dbe5cc1, type: 3}

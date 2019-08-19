@@ -6,12 +6,13 @@ using Unity.Notifications.iOS;
 
 public class EditAlarm : MonoBehaviour
 {
-    public AlarmElement EditingAlarm;
-    public int Id;
-    public Dropdown Hour_dropdown; // 1 ~ 12
-    public Dropdown Minute_dropdown; // 0 ~ 59
-    public Dropdown AMPM_dropdown; // AM, PM
+    [HideInInspector] public AlarmElement EditingAlarm;
+    [HideInInspector] public int Id;
+    public Hr_content Hour_dropdown; // 1 ~ 12
+    public Min_content Minute_dropdown; // 0 ~ 59
+    public AMPM_content AMPM_dropdown; // AM, PM
     public Dropdown Repeat_dropdown; // Never, daily
+    public Dropdown Ringer_dropdown;
     public InputField Label_input; // input field
 
     public void submitButtonClick()
@@ -19,25 +20,27 @@ public class EditAlarm : MonoBehaviour
         // handle ui
         AppManager.Prefabs[0].gameObject.SetActive(true);
 
-        string time = (Hour_dropdown.value + 1).ToString();
+        string time = (AMPM_dropdown.getValue() == 0) ? "上午 " : "下午 ";
+        time += Hour_dropdown.getValue();
         time += ":";
-        time += Minute_dropdown.value < 10 ? "0" + Minute_dropdown.value : Minute_dropdown.value.ToString();
+        time += Minute_dropdown.getValue() < 10 ? "0" + Minute_dropdown.getValue() : Minute_dropdown.getValue().ToString();
         time += " ";
-        time += (AMPM_dropdown.value == 0) ? "AM" : "PM";
 
         EditingAlarm.TimeString.text = time;
         EditingAlarm.Id = Id;
-        EditingAlarm.hr_dp_val = Hour_dropdown.value;
-        EditingAlarm.min_dp_val = Minute_dropdown.value;
-        EditingAlarm.ampm_dp_val = AMPM_dropdown.value;
+        EditingAlarm.hr_dp_val = Hour_dropdown.getValue();
+        EditingAlarm.min_dp_val = Minute_dropdown.getValue();
+        EditingAlarm.ampm_dp_val = AMPM_dropdown.getValue();
         EditingAlarm.repeat_dp_val = Repeat_dropdown.value;
+        EditingAlarm.ringer_dp_val = Ringer_dropdown.value;
         EditingAlarm.label_if_val = Label_input.text;
+        EditingAlarm.Profile.sprite = EditingAlarm.profile_sprites[EditingAlarm.ringer_dp_val];
 
         // handle notification
         // cancel the old one
         Notifications.RemoveAlarm(Id);
         // insert a new one
-        Id = Notifications.AddAlarm(Hour_dropdown.value + 1, Minute_dropdown.value, AMPM_dropdown.value, Repeat_dropdown.value == 0, Label_input.text);
+        Id = Notifications.AddAlarm(Hour_dropdown.getValue(), Minute_dropdown.getValue(), AMPM_dropdown.getValue(), Repeat_dropdown.value == 0, Label_input.text, Ringer_dropdown.value);
         AlarmList.SaveAlarmListToFile();
         Destroy(gameObject);
     }

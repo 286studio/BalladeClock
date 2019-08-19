@@ -26,6 +26,10 @@ public class AlarmList : MonoBehaviour
     void AddButtonClick()
     {
         AppManager.Prefabs[1].gameObject.SetActive(true);
+        AddAlarm aa = AppManager.Prefabs[1].GetComponent<AddAlarm>();
+        aa.Hour_dropdown.setValue(System.DateTime.Now.Hour == 0 ? 12 : System.DateTime.Now.Hour % 12);
+        aa.Minute_dropdown.setValue(System.DateTime.Now.Minute);
+        aa.AMPM_dropdown.setValue((System.DateTime.Now.Hour >= 12) ? 1 : 0);
         gameObject.SetActive(false);
     }
 
@@ -64,7 +68,7 @@ public class AlarmList : MonoBehaviour
             ud.min_dp_val = new int[ud.numAlarms];
             ud.ampm_dp_val = new int[ud.numAlarms];
             ud.repeat_dp_val = new int[ud.numAlarms];
-            ud.snooze_tg_val = new bool[ud.numAlarms];
+            ud.ringer_dp_val = new int[ud.numAlarms];
             ud.label_if_val = new string[ud.numAlarms];
             for (int i = 0; i < ui_alarmlist.Count; ++i)
             {
@@ -75,7 +79,7 @@ public class AlarmList : MonoBehaviour
                 ud.min_dp_val[i] = ae_comp.min_dp_val;
                 ud.ampm_dp_val[i] = ae_comp.ampm_dp_val;
                 ud.repeat_dp_val[i] = ae_comp.repeat_dp_val;
-                //ud.snooze_tg_val[i] = ae_comp.snooze_tg_val;
+                ud.ringer_dp_val[i] = ae_comp.ringer_dp_val;
                 ud.label_if_val[i] = ae_comp.label_if_val;
             }
         }
@@ -88,7 +92,7 @@ public class AlarmList : MonoBehaviour
             ud.min_dp_val = new int[] { };
             ud.ampm_dp_val = new int[] { };
             ud.repeat_dp_val = new int[] { };
-            ud.snooze_tg_val = new bool[] { };
+            ud.ringer_dp_val = new int[] { };
             ud.label_if_val = new string[] { };
         }
         SaveSystem.SaveAlarmListUserData(ud);
@@ -104,21 +108,21 @@ public class AlarmList : MonoBehaviour
             for (int i = 0; i < ud.numAlarms; ++i)
             {
                 var newAlarm = Instantiate(AlarmElementPrefab, AppManager.Prefabs[2].transform);
-                string time = (ud.hr_dp_val[i] + 1).ToString();
+                string time = (ud.ampm_dp_val[i] == 0) ? "上午 " : "下午 ";
+                time += ud.hr_dp_val[i].ToString();
                 time += ":";
                 time += ud.min_dp_val[i] < 10 ? "0" + ud.min_dp_val[i] : ud.min_dp_val[i].ToString();
                 time += " ";
-                time += (ud.ampm_dp_val[i] == 0) ? "AM" : "PM";
                 var ae = newAlarm.GetComponent<AlarmElement>();
                 ae.TimeString.text = time;
                 ae.Id = ud.id[i];
                 ae.profile_idx = ud.profile_idx[i];
-                ae.Profile.sprite = ae.profile_sprites[ae.profile_idx];
+                ae.ringer_dp_val = ud.ringer_dp_val[i];
+                ae.Profile.sprite = ae.profile_sprites[ae.ringer_dp_val];
                 ae.hr_dp_val = ud.hr_dp_val[i];
                 ae.min_dp_val = ud.min_dp_val[i];
                 ae.ampm_dp_val = ud.ampm_dp_val[i];
                 ae.repeat_dp_val = ud.repeat_dp_val[i];
-                //ae.snooze_tg_val = ud.snooze_tg_val[i];
                 ae.label_if_val = ud.label_if_val[i];
                 ui_alarmlist.Add(newAlarm);
             }

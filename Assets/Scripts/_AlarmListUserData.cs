@@ -17,6 +17,6 @@ public class _AlarmListUserData
     public int[] min_dp_val;
     public int[] ampm_dp_val;
     public int[] repeat_dp_val;
-    public bool[] snooze_tg_val;
+    public int[] ringer_dp_val;
     public string[] label_if_val;
 }

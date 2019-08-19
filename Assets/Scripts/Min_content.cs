@@ -10,7 +10,7 @@ public class Min_content : MonoBehaviour
     RectTransform rt;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rt = GetComponent<RectTransform>();
         for (int k = -3; k < 63; ++k)
@@ -21,7 +21,7 @@ public class Min_content : MonoBehaviour
             min.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 4875f - 150f * (k + 3));
             min.GetComponent<Text>().text = i < 10 ? "0" + i : i.ToString();
         }
-        setMinuteValue(0);
+        setValue(59);
     }
 
     void FixedUpdate()
@@ -40,12 +40,12 @@ public class Min_content : MonoBehaviour
         if (min_val == 60) min_val = 0;
     }
 
-    public int getMinuteValue()
+    public int getValue()
     {
         return min_val;
     }
 
-    public void setMinuteValue(int m)
+    public void setValue(int m)
     {
         min_val = m;
         rt.anchoredPosition = new Vector2(0, m * 150f + 300f);

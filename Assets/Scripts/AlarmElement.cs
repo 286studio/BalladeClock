@@ -20,6 +20,7 @@ public class AlarmElement : MonoBehaviour
     public int min_dp_val;
     public int ampm_dp_val;
     public int repeat_dp_val;
+    public int ringer_dp_val;
     public string label_if_val;
 
     public int Id;
@@ -42,11 +43,12 @@ public class AlarmElement : MonoBehaviour
         var comp = EditUI.GetComponent<EditAlarm>();
         comp.EditingAlarm = this;
         comp.Id = Id;
-        comp.Hour_dropdown.value = hr_dp_val;
-        comp.Minute_dropdown.value = min_dp_val;
-        comp.AMPM_dropdown.value = ampm_dp_val;
+        comp.Hour_dropdown.setValue(hr_dp_val);
+        comp.Minute_dropdown.setValue(min_dp_val);
+        comp.AMPM_dropdown.setValue(ampm_dp_val);
         comp.Repeat_dropdown.value = repeat_dp_val;
         comp.Label_input.text = label_if_val;
+        comp.Ringer_dropdown.value = ringer_dp_val;
         AppManager.Prefabs[0].gameObject.SetActive(false);
     }
 

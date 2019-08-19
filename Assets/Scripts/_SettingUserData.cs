@@ -6,8 +6,6 @@ using UnityEngine;
 public class _SettingUserData
 {
 	public int character;
-	public int[] voice;
-	public int[] anim;
+    public int costume;
 	public int bg;
-	public int bgm;
 }

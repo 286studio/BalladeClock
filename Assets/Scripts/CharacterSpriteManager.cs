@@ -38,7 +38,7 @@ public class CharacterSpriteManager : MonoBehaviour
     [SerializeField] Vector2[] facePositions;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         sprites = new Sprite[4][] { middle_sprites1, middle_sprites2, left_sprites, right_sprites };
 
