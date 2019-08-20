@@ -24,6 +24,7 @@ public class Min_content : MonoBehaviour
         setValue(59);
     }
 
+    float last_y;
     void FixedUpdate()
     {
         // 首尾相接效果
@@ -32,8 +33,13 @@ public class Min_content : MonoBehaviour
 
         // 中间数字趋向居中
         var pos = rt.anchoredPosition3D;
-        var target = new Vector3(0, ((int)pos.y + 75) / 150 * 150);
-        rt.anchoredPosition3D = Vector3.MoveTowards(rt.anchoredPosition3D, target, 50 * Time.fixedDeltaTime);
+        var v = (pos.y - last_y) / Time.fixedDeltaTime;
+        last_y = pos.y;
+        if (v < 50)
+        {
+            var target = new Vector3(0, ((int)pos.y + 75) / 150 * 150);
+            rt.anchoredPosition3D = Vector3.MoveTowards(rt.anchoredPosition3D, target, 150 * Time.fixedDeltaTime);
+        }
 
         // 当前分
         min_val = ((int)pos.y + 75) / 150 - 2;
@@ -48,6 +54,7 @@ public class Min_content : MonoBehaviour
     public void setValue(int m)
     {
         min_val = m;
-        rt.anchoredPosition = new Vector2(0, m * 150f + 300f);
+        last_y = m * 150f + 300f;
+        rt.anchoredPosition = new Vector2(0, last_y);
     }
 }
