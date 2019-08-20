@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AlarmList : MonoBehaviour
 {
     public Text CurrentTime;
+    public Text CurrentDate;
     public GameObject NoAlarms;
     public GameObject AlarmElementPrefab;
     public Button AddButtton;
@@ -21,6 +22,8 @@ public class AlarmList : MonoBehaviour
         AddButtton.onClick.AddListener(AddButtonClick);
         LoadAlarmListFromFile();
         Reorder();
+
+        Return.onClick.AddListener(delegate { Swipable.external_swipe_right = true; });
     }
 
     void AddButtonClick()
@@ -52,6 +55,7 @@ public class AlarmList : MonoBehaviour
 
     private void Update()
     {
+        CurrentDate.text = "" + System.DateTime.Now.Year + "/" + System.DateTime.Now.Month + "/" + System.DateTime.Now.Day;
         CurrentTime.text = System.DateTime.Now.ToShortTimeString();
     }
 

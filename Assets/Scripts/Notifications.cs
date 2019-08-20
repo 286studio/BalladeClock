@@ -14,6 +14,7 @@ public class Notifications : MonoBehaviour
     static string[] characterNames =
     {
         "陈星瑶",
+        "陈星瑶",
         "谈明美"
     };
 
@@ -26,6 +27,7 @@ public class Notifications : MonoBehaviour
 
     static string[] CategoryIdentifiers =
     {
+        "cxy",
         "cxy",
         "tmm"
     };
@@ -41,11 +43,21 @@ public class Notifications : MonoBehaviour
         "再不起来我就把你橱柜里点小人都砸了。",
     };
 
-    bool alarming;
-    int alarm_hr = -1;
-    int alarm_min = -1;
-    float vibrate_interval = 0.5f;
-    float vibrate_count;
+    // alarm variables
+    [SerializeField] GameObject _alarm_pfx;
+    static GameObject alarm_pfx;
+    static GameObject alarm_pfx_ins;
+    public static bool alarming;
+    static int alarm_hr;
+    static int alarm_min;
+    const float vibrate_interval = 0.5f;
+    static float vibrate_count;
+
+    private void Awake()
+    {
+        InitAlarm();
+        alarm_pfx = _alarm_pfx;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -73,12 +85,27 @@ public class Notifications : MonoBehaviour
         if (System.DateTime.Now.Hour != alarm_hr || System.DateTime.Now.Minute != alarm_min) EndAlarm();
     }
 
-    void StartAlarm(int hr, int min)
+    static void InitAlarm()
+    {
+        alarming = false;
+        alarm_hr = -1;
+        alarm_min = -1;
+        vibrate_count = -1;
+        if (alarm_pfx_ins != null)
+        {
+            Destroy(alarm_pfx_ins);
+            alarm_pfx_ins = null;
+        }
+    }
+
+    public static void StartAlarm(int hr, int min)
     {
         alarming = true;
         alarm_hr = hr;
         alarm_min = min;
         vibrate_count = Time.time;
+        alarm_pfx_ins = Instantiate(alarm_pfx, GameObject.Find("MainUI_Time").transform);
+        alarm_pfx_ins.transform.localScale *= 2;
     }
 
     void AlarmUpdate()
@@ -91,12 +118,16 @@ public class Notifications : MonoBehaviour
         }
     }
 
-    void EndAlarm()
+    public static void EndAlarm()
     {
+        if (!alarming) return;
         alarming = false;
         alarm_hr = -1;
         alarm_min = -1;
+        vibrate_count = -1;
         if (SoundPlayer.isPlaying) SoundPlayer.Stop();
+        Destroy(alarm_pfx_ins);
+        alarm_pfx_ins = null;
     }
 
     // This function execautes once when user open the app via notificaiton
@@ -167,12 +198,12 @@ public class Notifications : MonoBehaviour
             // used to cancel the notification, if you don't set one, a unique 
             // string will be generated automatically.
             Identifier = prefix + Id.ToString(),
-            Title = characterNames[CharacterSetting._ins.curCharacter],
+            Title = characterNames[ringer],
             Subtitle = "你的闹钟【" + (label.Length > 0 ? label : "Alarm") + "】到点了！",
             Body = bodyStrings[Random.Range(0, bodyStrings.Length - 1)],
             ShowInForeground = true,
             ForegroundPresentationOption = PresentationOption.None,
-            CategoryIdentifier = CategoryIdentifiers[CharacterSetting._ins.curCharacter],
+            CategoryIdentifier = CategoryIdentifiers[ringer],
             ThreadIdentifier = "thread1",
             Trigger = timeTrigger,
             Data = soundFileNames[ringer]

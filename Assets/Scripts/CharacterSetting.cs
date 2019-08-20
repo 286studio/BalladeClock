@@ -76,6 +76,7 @@ public class CharacterSetting : MonoBehaviour
 
         Buttons[2].onClick.AddListener(delegate {
             CharacterSelectUI.GetComponent<Animator>().SetBool("open", true);
+            Swipable.allow_swipe = false;
             Buttons[3].gameObject.SetActive(true);
             Buttons[2].gameObject.SetActive(false);
             Buttons[1].gameObject.SetActive(false);
@@ -83,6 +84,7 @@ public class CharacterSetting : MonoBehaviour
         Buttons[3].onClick.AddListener(delegate {
             CharacterSelectUI.GetComponent<Animator>().SetBool("open", false);
             CostumeSelectUI.GetComponent<Animator>().SetBool("open", false);
+            Swipable.allow_swipe = true;
             Buttons[3].gameObject.SetActive(false);
             Buttons[2].gameObject.SetActive(true);
             Buttons[1].gameObject.SetActive(true);
@@ -123,9 +125,9 @@ public class CharacterSetting : MonoBehaviour
     public void Character_touched()
     {
         if (Voice.isPlaying) return; // cooling down
-        if (Notifications.SoundPlayer != null && Notifications.SoundPlayer.isPlaying)
+        if (Notifications.alarming)
         {
-            Notifications.SoundPlayer.Stop();
+            Notifications.EndAlarm();
             return;
         }
         Voice.clip = curCharacter == 0 ? cxy.Voice_lib[Random.Range(0, cxy.Voice_lib.Count - 1)] : tmm.Voice_lib[Random.Range(0, tmm.Voice_lib.Count - 1)];
@@ -180,7 +182,7 @@ public class CharacterSetting : MonoBehaviour
             ud = new _SettingUserData();
             ud.character = 0;
             ud.costume = 0;
-            ud.bg = 0;
+            ud.bg = 6;
         }
         // apply changes
         switchCharacter(ud.character);
@@ -194,6 +196,7 @@ public class CharacterSetting : MonoBehaviour
     {
         CharacterSelectUI.GetComponent<Animator>().SetBool("open", false);
         CostumeSelectUI.GetComponent<Animator>().SetBool("open", false);
+        Swipable.allow_swipe = true;
         Buttons[2].gameObject.SetActive(true);
         Buttons[1].gameObject.SetActive(true);
     }

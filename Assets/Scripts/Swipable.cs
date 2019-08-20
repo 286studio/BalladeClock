@@ -10,6 +10,7 @@ public class Swipable : MonoBehaviour
     public GameObject Left;
     public GameObject Right;
     public GameObject GameSpace;
+    public GameObject Touch_pfx;
 
     RectTransform rt;
     public Moving moving;
@@ -27,6 +28,7 @@ public class Swipable : MonoBehaviour
 
     static public bool external_swipe_left;
     static public bool external_swipe_right;
+    static public bool allow_swipe;
 
     // Start is called before the first frame update
     void Start()
@@ -48,12 +50,13 @@ public class Swipable : MonoBehaviour
         Left.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         external_swipe_left = false;
         external_swipe_right = false;
+        allow_swipe = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (moving == Moving.None)
+        if (moving == Moving.None && allow_swipe)
         {
             if (swipeRight() && mv_pos == Moving.Left)
             {
@@ -65,6 +68,27 @@ public class Swipable : MonoBehaviour
             {
                 moving = Moving.Left;
                 startTime = Time.time;
+            }
+        }
+
+        // Touch particle effect
+#if UNITY_EDITOR
+        // mouse simulation
+        if (Input.GetMouseButtonDown(0))
+        {
+            var pfx = Instantiate(Touch_pfx, GameObject.Find("Canvas").transform);
+            pfx.transform.localScale = 200 * Vector3.one;
+            pfx.GetComponent<RectTransform>().anchoredPosition = (Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2)) * AppManager.DefaultRes.y / Screen.height;
+        }
+#endif
+        // touches
+        foreach(Touch touch in Input.touches)
+        {
+            if (touch.phase == TouchPhase.Began)
+            {
+                var pfx = Instantiate(Touch_pfx, GameObject.Find("Canvas").transform);
+                pfx.transform.localScale = 200 * Vector3.one;
+                pfx.GetComponent<RectTransform>().anchoredPosition = (touch.position - new Vector2(Screen.width / 2, Screen.height / 2)) * AppManager.DefaultRes.y / Screen.height;
             }
         }
     }
@@ -83,11 +107,6 @@ public class Swipable : MonoBehaviour
                 moveRight();
             }
         }
-    }
-    public void ml()
-    {
-        moving = Moving.Right;
-        startTime = Time.time;
     }
 
     bool swipeLeft()
