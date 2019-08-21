@@ -87,7 +87,7 @@ public class Swipable : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 var pfx = Instantiate(Touch_pfx, GameObject.Find("Canvas").transform);
-                pfx.transform.localScale = 300 * Vector3.one;
+                pfx.transform.localScale = 300 * Vector3.one; // 放大点击特效 // 原来是200
                 pfx.GetComponent<RectTransform>().anchoredPosition = (touch.position - new Vector2(Screen.width / 2, Screen.height / 2)) * AppManager.DefaultRes.y / Screen.height;
             }
         }
