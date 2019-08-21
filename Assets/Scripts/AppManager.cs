@@ -14,5 +14,6 @@ public class AppManager : MonoBehaviour
     {
         Prefabs = Prefabs_loader;
         AdjustedWidth = DefaultRes.y * Screen.width / Screen.height;
+        Application.targetFrameRate = 60; // FPS改到60
     }
 }
