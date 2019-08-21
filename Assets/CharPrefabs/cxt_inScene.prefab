@@ -196,6 +196,11 @@ MonoBehaviour:
   - {fileID: -7498796219882022627, guid: 38ed64544c98a4292bbc4bb0e76277e0, type: 3}
   - {fileID: -5065964209334057348, guid: 38ed64544c98a4292bbc4bb0e76277e0, type: 3}
   - {fileID: 2414210672131509777, guid: 38ed64544c98a4292bbc4bb0e76277e0, type: 3}
+  shout_face:
+  - {fileID: 21300000, guid: c03012ba42f75428498d5782d5a326f3, type: 3}
+  - {fileID: 21300000, guid: c03012ba42f75428498d5782d5a326f3, type: 3}
+  - {fileID: 21300000, guid: c03012ba42f75428498d5782d5a326f3, type: 3}
+  - {fileID: 21300000, guid: c03012ba42f75428498d5782d5a326f3, type: 3}
   facePositions:
   - {x: 0, y: 6.775}
   - {x: 0, y: 6.775}

@@ -42,12 +42,14 @@ public class EditAlarm : MonoBehaviour
         // insert a new one
         Id = Notifications.AddAlarm(Hour_dropdown.getValue(), Minute_dropdown.getValue(), AMPM_dropdown.getValue(), Repeat_dropdown.value == 0, Label_input.text, Ringer_dropdown.value);
         AlarmList.SaveAlarmListToFile();
+        Swipable.allow_swipe = true;
         Destroy(gameObject);
     }
 
     public void deleteButtonClick()
     {
         AppManager.Prefabs[0].gameObject.SetActive(true);
+        Swipable.allow_swipe = true;
         EditingAlarm.X_button_click();
         Destroy(gameObject);
     }

@@ -31,34 +31,33 @@ public class CharacterSetting : MonoBehaviour
     [Header("Background")]
     public Sprite[] BG_sprites;
 
-    //CharacterInitializtion
-    public Character cxy = new Character();
-    public Character tmm = new Character();
-    Dictionary<string, Character> Choosing;
+    // voices
     [Header("SFX")]
-    public AudioClip[] bgm = new AudioClip[2];
-    AudioSource BGM;
-    public AudioSource Voice;
-    public int cur_bgm = 0;
+    [SerializeField] AudioClip[] cxt_m1_touched;
+    [SerializeField] AudioClip[] cxt_m2_touched;
+    [SerializeField] AudioClip[] cxt_l_touched;
+    [SerializeField] AudioClip[] cxt_r_touched;
+    [SerializeField] AudioClip[] tmm_m1_touched;
+    [SerializeField] AudioClip[] tmm_m2_touched;
+    [SerializeField] AudioClip[] tmm_l_touched;
+    [SerializeField] AudioClip[] tmm_r_touched;
+    [SerializeField] AudioClip[][][] voiceClips;
+    [HideInInspector]public AudioSource Voice;
 
     private void Awake()
     {
         if (_ins == null) _ins = this; else Destroy(gameObject);
-        BGM = gameObject.AddComponent<AudioSource>();
+
         Voice = gameObject.AddComponent<AudioSource>();
+        var cxt_voices_touched = new AudioClip[4][] { cxt_m1_touched, cxt_m2_touched, cxt_l_touched, cxt_r_touched };
+        var tmm_voices_touched = new AudioClip[4][] { tmm_m1_touched, tmm_m2_touched, tmm_l_touched, tmm_r_touched };
+        voiceClips = new AudioClip[2][][] { cxt_voices_touched, tmm_voices_touched };
     }
 
     private void Start()
     {
         LoadSettingFromFile();
         Buttons[3].gameObject.SetActive(false);
-        CharacterInitialization();
-        BGM.clip = bgm[cur_bgm];
-        BGM.loop = true;
-        BGM.volume = 0.5f;
-        // BGM.Play();
-        Voice.clip = curCharacter == 0 ? cxy.Voice_lib[0] : tmm.Voice_lib[0];
-        Voice.loop = false;
 
         costumes = new Sprite[numCharacter][] { cxy_costumes, tmm_costumes };
 
@@ -111,17 +110,6 @@ public class CharacterSetting : MonoBehaviour
         }
     }
 
-    public void CharacterInitialization()
-    {
-        cxy.name = "cxy";
-        tmm.name = "tmm";
-        for (int i = 0; i < 10; ++i)
-        {
-            cxy.Voice_lib.Add(i, Resources.Load<AudioClip>("Characters/Voices/cxy/x" + (i + 1).ToString()));
-            tmm.Voice_lib.Add(i, Resources.Load<AudioClip>("Characters/Voices/tmm/m" + (i + 1).ToString()));
-        }
-    }
-
     public void Character_touched()
     {
         if (Voice.isPlaying) return; // cooling down
@@ -130,10 +118,10 @@ public class CharacterSetting : MonoBehaviour
             Notifications.EndAlarm();
             return;
         }
-        Voice.clip = curCharacter == 0 ? cxy.Voice_lib[Random.Range(0, cxy.Voice_lib.Count - 1)] : tmm.Voice_lib[Random.Range(0, tmm.Voice_lib.Count - 1)];
+        var cur_pose_idx = Gamespace.Characters[curCharacter].GetComponentInChildren<CharacterSpriteManager>().show(-2, -1, 1);
+        Voice.clip = voiceClips[curCharacter][cur_pose_idx][Random.Range(0, voiceClips[curCharacter][cur_pose_idx].Length)];
         Voice.Play();
         voice_bool = true;
-        Gamespace.Characters[curCharacter].GetComponentInChildren<CharacterSpriteManager>().show(-2, -1, 1);
 
         disappear();
     }
@@ -178,18 +166,17 @@ public class CharacterSetting : MonoBehaviour
         _SettingUserData ud = SaveSystem.LoadSettingUserData();
         if (ud == null)
         {
-            Debug.Log("No file");
             ud = new _SettingUserData();
             ud.character = 0;
             ud.costume = 0;
             ud.bg = 6;
         }
         // apply changes
-        switchCharacter(ud.character);
         curCostume = ud.costume;
-        Gamespace.Characters[curCharacter].GetComponent<CharacterSpriteManager>().show(-1, curCostume, -1);
         curBG = ud.bg;
         Gamespace.Background.GetComponent<SpriteRenderer>().sprite = BG_sprites[curBG];
+        switchCharacter(ud.character);
+        Gamespace.Characters[curCharacter].GetComponent<CharacterSpriteManager>().show(-1, curCostume, -1);
     }
 
     public void disappear()

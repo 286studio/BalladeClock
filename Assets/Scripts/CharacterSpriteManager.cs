@@ -23,6 +23,7 @@ public class CharacterSpriteManager : MonoBehaviour
     [SerializeField] Sprite[] middle_face2_facered;
     [SerializeField] Sprite[] left_face_facered;
     [SerializeField] Sprite[] right_face_facered;
+    [SerializeField] Sprite[] shout_face;
     Sprite[][][] faces;
     SpriteRenderer face_sr;
     float[] keyframes = {12, 2, 2, 4, 190, 2, 2, 4, 190, 2, 2, 4};
@@ -44,7 +45,8 @@ public class CharacterSpriteManager : MonoBehaviour
 
         var normal_faces = new Sprite[4][] { middle_face1, middle_face2, left_face, right_face };
         var red_faces = new Sprite[4][] { middle_face1_facered, middle_face2_facered, left_face_facered, right_face_facered };
-        faces = new Sprite[2][][] { normal_faces, red_faces };
+        var shout_faces = new Sprite[1][] { shout_face };
+        faces = new Sprite[3][][] { normal_faces, red_faces, shout_faces };
 
         face_sr = Face.GetComponent<SpriteRenderer>();
         anim_time = Time.time;
@@ -62,7 +64,7 @@ public class CharacterSpriteManager : MonoBehaviour
         }
     }
 
-    public void show(int pose, int costumes, int touched)
+    public int show(int pose, int costumes, int touched)
     {
         if (touched >= 0) expression = touched;
         if (pose >= 0) pose_idx = pose;
@@ -70,5 +72,23 @@ public class CharacterSpriteManager : MonoBehaviour
         if (costumes >= 0) costumes_idx = costumes;
         Figure.GetComponent<SpriteRenderer>().sprite = sprites[pose_idx][costumes_idx];
         Face.GetComponent<RectTransform>().anchoredPosition = facePositions[pose_idx];
+        return pose_idx;
+    }
+
+    public void showAlarm(int ringer)
+    {
+        // make sure you switch to the right character before calling this function
+        switch(ringer)
+        {
+            case 0: // 陈星瑶唱OP
+                show(0, -1, 1);
+                break;
+            case 1: // 陈星瑶呐喊
+                show(0, -1, 2);
+                break;
+            case 2: // 谭明美：很黄很暴力
+                show(3, -1, 1);
+                break;
+        }
     }
 }

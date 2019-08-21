@@ -17,7 +17,7 @@ public class AlarmList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(Application.persistentDataPath);
+        // print(Application.persistentDataPath);
         if (ui_alarmlist == null) ui_alarmlist = new List<GameObject>();
         AddButtton.onClick.AddListener(AddButtonClick);
         LoadAlarmListFromFile();
@@ -33,6 +33,7 @@ public class AlarmList : MonoBehaviour
         aa.Hour_dropdown.setValue(System.DateTime.Now.Hour == 0 ? 12 : System.DateTime.Now.Hour % 12);
         aa.Minute_dropdown.setValue(System.DateTime.Now.Minute);
         aa.AMPM_dropdown.setValue((System.DateTime.Now.Hour >= 12) ? 1 : 0);
+        Swipable.allow_swipe = false;
         gameObject.SetActive(false);
     }
 

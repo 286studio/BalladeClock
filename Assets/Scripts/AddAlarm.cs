@@ -52,13 +52,14 @@ public class AddAlarm : MonoBehaviour
         // save
         AlarmList.SaveAlarmListToFile();
         // 此界面任务完成，把自身设为不可见
+        Swipable.allow_swipe = true;
         gameObject.SetActive(false);
     }
 
     void cancelButtonClick()
     {
         AppManager.Prefabs[0].SetActive(true);
-        // do nothing
+        Swipable.allow_swipe = true;
         gameObject.SetActive(false);
     }
 }

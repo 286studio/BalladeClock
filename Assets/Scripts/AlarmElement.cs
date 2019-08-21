@@ -49,6 +49,7 @@ public class AlarmElement : MonoBehaviour
         comp.Repeat_dropdown.value = repeat_dp_val;
         comp.Label_input.text = label_if_val;
         comp.Ringer_dropdown.value = ringer_dp_val;
+        Swipable.allow_swipe = false;
         AppManager.Prefabs[0].gameObject.SetActive(false);
     }
 

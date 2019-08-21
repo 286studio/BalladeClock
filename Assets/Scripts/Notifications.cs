@@ -35,12 +35,9 @@ public class Notifications : MonoBehaviour
     string curRespondNotificationIdentifier;
 
     static string[] bodyStrings = {
-        "太阳晒屁股了！",
-        "到点了到点了还不起来！",
-        "快迟到啦！",
-        "懒猪猪快起来！",
-        "早餐给你做好了，快起来吃把。",
-        "再不起来我就把你橱柜里点小人都砸了。",
+        "不忘列车经历的风景\r\n追逐前方的光影\r\n直到终点将来临\r\n看那时漫天落英",
+        "啊—————— 啊——————",
+        "你是不是天天都在看什么很黄很暴力都东西啊",
     };
 
     // alarm variables
@@ -128,6 +125,8 @@ public class Notifications : MonoBehaviour
         if (SoundPlayer.isPlaying) SoundPlayer.Stop();
         Destroy(alarm_pfx_ins);
         alarm_pfx_ins = null;
+
+        Gamespace.Characters[CharacterSetting._ins.curCharacter].GetComponentInChildren<CharacterSpriteManager>().show(-1, -1, 0);
     }
 
     // This function execautes once when user open the app via notificaiton
@@ -137,22 +136,25 @@ public class Notifications : MonoBehaviour
         iOSNotificationCalendarTrigger t = (iOSNotificationCalendarTrigger)ln.Trigger;
         // Debug.Log(System.DateTime.Now.Hour + "==" + t.Hour + "?");
         // Debug.Log(System.DateTime.Now.Minute + "==" + t.Minute + "?");
+        int r = getRinger(ln.Data);
         if (System.DateTime.Now.Hour == t.Hour && System.DateTime.Now.Minute == t.Minute)
         {
-            getRingerClip(ln.Data);
+            SoundPlayer.clip = Ringers[r];
             float curSec = System.DateTime.Now.Second + System.DateTime.Now.Millisecond / 1000f;
             if (curSec < SoundPlayer.clip.length)
             {
                 SoundPlayer.time = curSec;
                 SoundPlayer.Play();
-                StartAlarm((int)t.Hour, (int)t.Minute);
             }
-        }
+            StartAlarm((int)t.Hour, (int)t.Minute);
 
-        // go to character's page
-        CharacterSetting._ins.switchCharacter(ln.CategoryIdentifier == "cxy" ? 0 : 1);
-        Swipable.external_swipe_right = true;
-        iOSNotificationCenter.RemoveAllDeliveredNotifications();
+            // go to character's page
+            int curCharacter = ln.CategoryIdentifier == "cxy" ? 0 : 1;
+            CharacterSetting._ins.switchCharacter(curCharacter);
+            Gamespace.Characters[curCharacter].GetComponentInChildren<CharacterSpriteManager>().showAlarm(r);
+            Swipable.external_swipe_right = true;
+            iOSNotificationCenter.RemoveAllDeliveredNotifications();
+        }
     }
 
     // This function execautes once when user receive notificaiton when app is already open
@@ -160,24 +162,21 @@ public class Notifications : MonoBehaviour
     {
 
         // play character voice
-        getRingerClip(ln.Data);
+        int r = getRinger(ln.Data);
+        SoundPlayer.clip = Ringers[r];
         SoundPlayer.Play();
         StartAlarm(System.DateTime.Now.Hour, System.DateTime.Now.Minute);
-        CharacterSetting._ins.switchCharacter(ln.CategoryIdentifier == "cxy" ? 0 : 1);
+        int curCharacter = ln.CategoryIdentifier == "cxy" ? 0 : 1;
+        CharacterSetting._ins.switchCharacter(curCharacter);
+        Gamespace.Characters[curCharacter].GetComponentInChildren<CharacterSpriteManager>().showAlarm(r);
         Swipable.external_swipe_right = true;
         Handheld.Vibrate();
     }
 
-    void getRingerClip(string clipName)
+    int getRinger(string clipName)
     {
-        for (int i = 0; i < soundFileNames.Length; ++i)
-        {
-            if (soundFileNames[i] == clipName)
-            {
-                SoundPlayer.clip = Ringers[i];
-                break;
-            }
-        }
+        for (int i = 0; i < soundFileNames.Length; ++i) if (soundFileNames[i] == clipName)return i;
+        return 0;
     }
 
     public static int AddAlarm(int hr, int min, int ampm, bool repeat, string label, int ringer)
@@ -199,8 +198,8 @@ public class Notifications : MonoBehaviour
             // string will be generated automatically.
             Identifier = prefix + Id.ToString(),
             Title = characterNames[ringer],
-            Subtitle = "你的闹钟【" + (label.Length > 0 ? label : "Alarm") + "】到点了！",
-            Body = bodyStrings[Random.Range(0, bodyStrings.Length - 1)],
+            Subtitle = "你的闹铃【" + (label.Length > 0 ? label : "未命名闹铃") + "】到点了！",
+            Body = bodyStrings[ringer],
             ShowInForeground = true,
             ForegroundPresentationOption = PresentationOption.None,
             CategoryIdentifier = CategoryIdentifiers[ringer],
