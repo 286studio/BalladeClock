@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.Notifications.iOS;
 
 public class AlarmList : MonoBehaviour
 {
@@ -132,5 +133,6 @@ public class AlarmList : MonoBehaviour
                 ui_alarmlist.Add(newAlarm);
             }
         }
+        else iOSNotificationCenter.RemoveAllScheduledNotifications(); // first time open app;
     }
 }
