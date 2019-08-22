@@ -2547,7 +2547,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   BG_sprites:
   - {fileID: 21300000, guid: 603b0dcfca9cb49d5a67f738e9d610c3, type: 3}
-  - {fileID: 21300000, guid: a8c1a12ee1d584378bd6b9552eae28e7, type: 3}
+  - {fileID: 21300000, guid: 9f8e7afd2674345d6bd4170947fc7c48, type: 3}
   - {fileID: 21300000, guid: 65364d3aa22a449669184f69acee27c9, type: 3}
   - {fileID: 21300000, guid: 88f215415c9c6427ea503c17383753e4, type: 3}
   - {fileID: 21300000, guid: c8562cdc2143d4cc8a8c99aeb415132b, type: 3}
@@ -2837,7 +2837,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 300}
   m_SizeDelta: {x: 270.8, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &7545589184693463927
@@ -2988,7 +2988,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 299.9999}
   m_SizeDelta: {x: 420.6, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &7656901281589174874
