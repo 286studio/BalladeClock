@@ -98,12 +98,12 @@ TextureImporter:
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 33
     textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -114,17 +114,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 528
-        width: 370
-        height: 528
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4ef36111bb63408ba4a6c7f3f8ad105
+      spriteID: 48cd29c75df4b4449ad45dfe6c910435
       internalID: 6045316510006159469
       vertices: []
       indices: 
@@ -134,18 +134,18 @@ TextureImporter:
       name: cxyf_left_red_1
       rect:
         serializedVersion: 2
-        x: 370
-        y: 528
-        width: 370
-        height: 528
+        x: 512
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 234eb43e51ae748979d4f735b3368e8b
+      spriteID: 12894a86f583a47b2890c1e49bb616ca
       internalID: -509341478395659641
       vertices: []
       indices: 
@@ -157,16 +157,16 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 370
-        height: 528
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1eb5213d4e1984bce940445fa9f74904
+      spriteID: 985b430bdfe6b4eb8a82165e46d2d777
       internalID: -2417167366784512832
       vertices: []
       indices: 
@@ -176,18 +176,18 @@ TextureImporter:
       name: cxyf_left_red_3
       rect:
         serializedVersion: 2
-        x: 370
+        x: 512
         y: 0
-        width: 370
-        height: 528
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2ee433484df448e99aded0d937834bf
+      spriteID: 132418896699b48b4b90cb69070b92f1
       internalID: 6869139916874119399
       vertices: []
       indices: 
