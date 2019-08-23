@@ -56,7 +56,7 @@ public class Swipable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (moving == Moving.None && allow_swipe)
+        if (moving == Moving.None)
         {
             if (swipeRight() && mv_pos == Moving.Left)
             {
@@ -87,7 +87,7 @@ public class Swipable : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 var pfx = Instantiate(Touch_pfx, GameObject.Find("Canvas").transform);
-                pfx.transform.localScale = 300 * Vector3.one; // 放大点击特效 // 原来是200
+                pfx.transform.localScale = 200 * Vector3.one; // 放大点击特效 // 原来是200
                 pfx.GetComponent<RectTransform>().anchoredPosition = (touch.position - new Vector2(Screen.width / 2, Screen.height / 2)) * AppManager.DefaultRes.y / Screen.height;
             }
         }
@@ -120,7 +120,7 @@ public class Swipable : MonoBehaviour
             external_swipe_left = false;
             return true;
         }
-
+        if (!allow_swipe) return false;
         foreach (Touch touch in Input.touches)
         {
             return touch.deltaPosition.x / touch.deltaTime < -2000;
@@ -139,7 +139,7 @@ public class Swipable : MonoBehaviour
             external_swipe_right = false;
             return true;
         }
-
+        if (!allow_swipe) return false;
         foreach (Touch touch in Input.touches)
         {
             return touch.deltaPosition.x / touch.deltaTime > 2000;

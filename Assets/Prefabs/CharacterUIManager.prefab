@@ -2579,7 +2579,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1fdd08378d86f45b1891b1897378c7bf, type: 3}
   - {fileID: 8300000, guid: 5e82b0545b75544a8adfacb2be65ef30, type: 3}
   tmm_m2_touched:
-  - {fileID: 8300000, guid: 599091ad6468a4840a37fbaf6eb16ea9, type: 3}
   - {fileID: 8300000, guid: 5f0f88cd362354b02a4d88602c9d1961, type: 3}
   tmm_l_touched:
   - {fileID: 8300000, guid: 4b1c18d5571b7a24bb15dd8860c8a6f8, type: 3}
@@ -2837,7 +2836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 270.8, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &7545589184693463927
@@ -2988,7 +2987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 299.9999}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 420.6, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &7656901281589174874

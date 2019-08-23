@@ -103,6 +103,9 @@ public class Notifications : MonoBehaviour
         vibrate_count = Time.time;
         alarm_pfx_ins = Instantiate(alarm_pfx, GameObject.Find("MainUI_Time").transform);
         alarm_pfx_ins.transform.localScale *= 2;
+        CharacterSetting._ins.disappear();
+        for (int i = 0; i < 3; ++i) CharacterSetting._ins.Buttons[i].gameObject.SetActive(false);
+        Swipable.allow_swipe = false;
     }
 
     void AlarmUpdate()
@@ -126,7 +129,10 @@ public class Notifications : MonoBehaviour
         Destroy(alarm_pfx_ins);
         alarm_pfx_ins = null;
 
+        Swipable.allow_swipe = true;
+
         Gamespace.Characters[CharacterSetting._ins.curCharacter].GetComponentInChildren<CharacterSpriteManager>().show(-1, -1, 0);
+        for (int i = 0; i < 3; ++i) CharacterSetting._ins.Buttons[i].gameObject.SetActive(true);
     }
 
     // This function execautes once when user open the app via notificaiton

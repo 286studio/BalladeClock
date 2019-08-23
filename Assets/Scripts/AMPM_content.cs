@@ -19,7 +19,10 @@ public class AMPM_content : MonoBehaviour
     {
         // 中间数字趋向居中
         var pos = rt.anchoredPosition3D;
-        rt.anchoredPosition3D = Vector3.MoveTowards(rt.anchoredPosition3D, new Vector3(0f, pos.y > 75f ? 150f : 0f, 0f), 50 * Time.fixedDeltaTime);
+        if (Input.touches.Length == 0)
+        {
+            rt.anchoredPosition3D = Vector3.MoveTowards(rt.anchoredPosition3D, new Vector3(0f, pos.y > 75f ? 150f : 0f, 0f), 50 * Time.fixedDeltaTime);
+        }
 
 		// 当前时
 		ampm_val = pos.y > 75f ? 1 : 0;

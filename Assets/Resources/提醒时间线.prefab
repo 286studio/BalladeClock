@@ -8,9 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3668968894058985658}
+  - component: {fileID: 1330515395237789910}
   - component: {fileID: 3668968894078382862}
   - component: {fileID: 3668968894076336184}
+  - component: {fileID: 8731032032071295463}
+  - component: {fileID: 6752689858813067150}
   m_Layer: 0
   m_Name: Tinysparkles
   m_TagString: Untagged
@@ -18,8 +20,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3668968894058985658
-Transform:
+--- !u!224 &1330515395237789910
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -32,6 +34,11 @@ Transform:
   m_Father: {fileID: 7980478418532951177}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!198 &3668968894078382862
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4689,7 +4696,7 @@ ParticleSystemRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3668968894058682276}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4744,6 +4751,40 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!222 &8731032032071295463
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3668968894058682276}
+  m_CullTransparentMesh: 0
+--- !u!114 &6752689858813067150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3668968894058682276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ca2d70f54cb433f8564e11c76c120e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_ParticleSystem: {fileID: 3668968894078382862}
+  m_TrailParticle: {fileID: 0}
+  m_IsTrail: 0
+  m_Scale: 1
+  m_IgnoreParent: 0
+  m_AnimatableProperties: []
 --- !u!1 &3668968894058701376
 GameObject:
   m_ObjectHideFlags: 0
@@ -4776,7 +4817,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -0.01}
   m_LocalScale: {x: 91.30436, y: 91.304405, z: 91.304405}
   m_Children:
-  - {fileID: 3668968894058985658}
+  - {fileID: 1330515395237789910}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}

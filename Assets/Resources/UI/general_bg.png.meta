@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: 67ce64cbab7fd4265ae94378ad0d91d1
+guid: 3774e70f4941849b5a77469e35eadd8e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5263641473973327029
-    second: cxyf31_0
+      213: -6237855224227998935
+    second: general_bg_0
   - first:
-      213: -2472184874886023994
-    second: cxyf31_1
+      213: 5840650075824946947
+    second: general_bg_1
   - first:
-      213: 1879419599857393009
-    second: cxyf31_2
-  - first:
-      213: 4439864359490231659
-    second: cxyf31_3
+      213: 1052492429534780508
+    second: general_bg_2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -81,7 +78,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -93,7 +90,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
@@ -105,18 +102,18 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cxyf31_0
+      name: general_bg_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 512
-        width: 512
-        height: 512
+        x: 107
+        y: 847
+        width: 1836
+        height: 358
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2b117c64339d45eea51217b7ed004a5
-      internalID: -5263641473973327029
+      spriteID: 3a7bfb08a2bd746b48148e058d9f71d2
+      internalID: -6237855224227998935
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cxyf31_1
+      name: general_bg_1
       rect:
         serializedVersion: 2
-        x: 512
-        y: 512
-        width: 512
-        height: 512
+        x: 1931
+        y: 1103
+        width: 7
+        height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cd82766af7504054918ea853d1ebce5
-      internalID: -2472184874886023994
+      spriteID: dc8bc42b5c667409d88d043263d76350
+      internalID: 5840650075824946947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cxyf31_2
+      name: general_bg_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 512
-        height: 512
+        x: 183
+        y: 847
+        width: 7
+        height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,29 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f78d08135b354e699913cefeabd701d
-      internalID: 1879419599857393009
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cxyf31_3
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 767cc5ca9894446ce84f9751cad88e42
-      internalID: 4439864359490231659
+      spriteID: c834c168b7cff47fb890c6e4caeecc53
+      internalID: 1052492429534780508
       vertices: []
       indices: 
       edges: []
@@ -196,7 +172,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3de19f8fda3d440b5b1d1d87e6467e38
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

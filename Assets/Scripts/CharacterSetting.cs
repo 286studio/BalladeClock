@@ -79,7 +79,8 @@ public class CharacterSetting : MonoBehaviour
             Buttons[3].gameObject.SetActive(true);
             Buttons[2].gameObject.SetActive(false);
             Buttons[1].gameObject.SetActive(false);
-	    });
+            Buttons[0].gameObject.SetActive(false);
+        });
         Buttons[3].onClick.AddListener(delegate {
             CharacterSelectUI.GetComponent<Animator>().SetBool("open", false);
             CostumeSelectUI.GetComponent<Animator>().SetBool("open", false);
@@ -87,6 +88,7 @@ public class CharacterSetting : MonoBehaviour
             Buttons[3].gameObject.SetActive(false);
             Buttons[2].gameObject.SetActive(true);
             Buttons[1].gameObject.SetActive(true);
+            Buttons[0].gameObject.SetActive(true);
         });
         for (int i = 0; i < numCharacter; ++i)
         {
@@ -186,6 +188,7 @@ public class CharacterSetting : MonoBehaviour
         Swipable.allow_swipe = true;
         Buttons[2].gameObject.SetActive(true);
         Buttons[1].gameObject.SetActive(true);
+        Buttons[0].gameObject.SetActive(true);
     }
 
     void ButtonAdjuster()
@@ -193,7 +196,8 @@ public class CharacterSetting : MonoBehaviour
         float spacer = 120f * AppManager.AdjustedWidth / AppManager.DefaultRes.x;
         var rt = Buttons[0].GetComponent<RectTransform>();
         var pos = rt.anchoredPosition;
-        pos.x = -(AppManager.AdjustedWidth / 2 - spacer);
+        pos.x = AppManager.AdjustedWidth / 2 - 2 * spacer - 150;
+        pos.y = -(AppManager.DefaultRes.y / 2 - spacer);
         rt.anchoredPosition = pos;
 
         rt = Buttons[1].GetComponent<RectTransform>();

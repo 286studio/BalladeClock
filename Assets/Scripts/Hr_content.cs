@@ -35,7 +35,7 @@ public class Hr_content : MonoBehaviour
         var pos = rt.anchoredPosition3D;
         var v = (pos.y - last_y) / Time.fixedDeltaTime;
         last_y = pos.y;
-        if (v < 50)
+        if (v < 50 && Input.touches.Length == 0)
         {
             var target = new Vector3(0, ((int)pos.y + 75) / 150 * 150);
             rt.anchoredPosition3D = Vector3.MoveTowards(rt.anchoredPosition3D, target, 150 * Time.fixedDeltaTime);
