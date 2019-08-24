@@ -606,7 +606,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6191935371856774276}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.7163092
+  m_Size: 0.7195252
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1483,7 +1483,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2771217922131331718}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.7968187
+  m_Size: 0.7993777
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2539,12 +2539,13 @@ MonoBehaviour:
   curCharacter: 0
   curCostume: 0
   BG_offsets:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0.07, z: 2}
+  - {x: 0, y: 1.82, z: 2}
+  - {x: 0, y: -1.4, z: 2}
+  - {x: 0, y: 1.82, z: 2}
+  - {x: 0, y: 1.7, z: 2}
+  - {x: 0, y: -1.04, z: 2}
+  - {x: 0, y: 1.82, z: 2}
   BG_sprites:
   - {fileID: 21300000, guid: 603b0dcfca9cb49d5a67f738e9d610c3, type: 3}
   - {fileID: 21300000, guid: 9f8e7afd2674345d6bd4170947fc7c48, type: 3}

@@ -23,12 +23,20 @@ public class Swipable : MonoBehaviour
 
     float EndPoint;
     Vector3 GS_EndPoint;
-    Vector3 BG_EndPoint;
-    Vector3 BG_StartPoint;
+    static public Vector3 BG_EndPoint;
+    static public Vector3 BG_StartPoint;
 
     static public bool external_swipe_left;
     static public bool external_swipe_right;
     static public bool allow_swipe;
+
+
+    private void Awake()
+    {
+        var p = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f));
+        BG_EndPoint = new Vector3(-(10.24f - p.x), 1.82f, 2f);
+        BG_StartPoint = new Vector3(0, 1.82f, 2f);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -38,10 +46,6 @@ public class Swipable : MonoBehaviour
         pos.y = 0;
         pos.z = 0;
         GS_EndPoint = pos;
-
-        var p = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f));
-        BG_EndPoint = new Vector3(-(10.24f - p.x), 1.82f, 2f);
-        BG_StartPoint= new Vector3(0, 1.82f, 2f);
 
         rt = GetComponent<RectTransform>();
         moving = Moving.None;
@@ -77,7 +81,7 @@ public class Swipable : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             var pfx = Instantiate(Touch_pfx, GameObject.Find(mv_pos == Moving.Left ? "Swipable_right" : "Swipable_left").transform);
-            pfx.transform.localScale = 200 * Vector3.one;
+            pfx.transform.localScale = 100 * Vector3.one;
             pfx.GetComponent<RectTransform>().anchoredPosition = (Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2)) * AppManager.DefaultRes.y / Screen.height;
         }
 #endif
@@ -87,7 +91,7 @@ public class Swipable : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 var pfx = Instantiate(Touch_pfx, GameObject.Find(mv_pos == Moving.Left ? "Swipable_right" : "Swipable_left").transform);
-                pfx.transform.localScale = 200 * Vector3.one; // 放大点击特效 // 原来是200
+                pfx.transform.localScale = 100 * Vector3.one; // 放大点击特效 // 原来是200
                 pfx.GetComponent<RectTransform>().anchoredPosition = (touch.position - new Vector2(Screen.width / 2, Screen.height / 2)) * AppManager.DefaultRes.y / Screen.height;
             }
         }

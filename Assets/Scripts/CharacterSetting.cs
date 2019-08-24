@@ -64,8 +64,7 @@ public class CharacterSetting : MonoBehaviour
         // new UI
         ButtonAdjuster();
         Buttons[0].onClick.AddListener(delegate {
-            curBG = (curBG + 1) % BG_sprites.Length;
-            Gamespace.Background.GetComponent<SpriteRenderer>().sprite = BG_sprites[curBG];
+            switchBG();
             SaveSettingToFile();
         });
 
@@ -128,6 +127,18 @@ public class CharacterSetting : MonoBehaviour
         disappear();
     }
 
+    public void switchBG(int idx = -1)
+    {
+        if (idx < 0) curBG = (curBG + 1) % BG_sprites.Length;
+        else curBG = idx;
+        Swipable.BG_EndPoint.x += BG_offsets[curBG].x;
+        Swipable.BG_StartPoint.x += BG_offsets[curBG].x;
+        Swipable.BG_EndPoint.y = BG_offsets[curBG].y;
+        Swipable.BG_StartPoint.y = BG_offsets[curBG].y;
+        Gamespace.Background.GetComponent<SpriteRenderer>().sprite = BG_sprites[curBG];
+        Gamespace.Background.transform.position = Swipable.BG_StartPoint;
+    }
+
     public void switchCharacter(int idx)
     {
         curCharacter = idx;
@@ -175,8 +186,7 @@ public class CharacterSetting : MonoBehaviour
         }
         // apply changes
         curCostume = ud.costume;
-        curBG = ud.bg;
-        Gamespace.Background.GetComponent<SpriteRenderer>().sprite = BG_sprites[curBG];
+        switchBG(ud.bg);
         switchCharacter(ud.character);
         Gamespace.Characters[curCharacter].GetComponent<CharacterSpriteManager>().show(-1, curCostume, -1);
     }

@@ -167,10 +167,10 @@ MonoBehaviour:
   - {fileID: 1879419599857393009, guid: 67ce64cbab7fd4265ae94378ad0d91d1, type: 3}
   - {fileID: 4439864359490231659, guid: 67ce64cbab7fd4265ae94378ad0d91d1, type: 3}
   left_face:
-  - {fileID: -5443192536570665762, guid: c0a9a7126273e40a9bfd7a337706fa54, type: 3}
-  - {fileID: 7106639780859657326, guid: c0a9a7126273e40a9bfd7a337706fa54, type: 3}
-  - {fileID: 1288454787101134269, guid: c0a9a7126273e40a9bfd7a337706fa54, type: 3}
-  - {fileID: 5216626791178421747, guid: c0a9a7126273e40a9bfd7a337706fa54, type: 3}
+  - {fileID: 21300000, guid: ef9c2991fbcf8440f972a9ad19045ebc, type: 3}
+  - {fileID: 21300000, guid: 79815554ec2404c539ba5d5ff5969d92, type: 3}
+  - {fileID: 21300000, guid: dda5542dbe2664bbf9f953b90acee08e, type: 3}
+  - {fileID: 21300000, guid: 3e71c80e0eada47c6a24124d45415f31, type: 3}
   right_face:
   - {fileID: 160426532303420149, guid: 1c23932c00acc4d149b57cf86dbe7dcf, type: 3}
   - {fileID: -2740564320969804899, guid: 1c23932c00acc4d149b57cf86dbe7dcf, type: 3}
@@ -187,10 +187,10 @@ MonoBehaviour:
   - {fileID: 6397288358557166756, guid: cb400d7f6cc3b44bcbaeaf52c8af879c, type: 3}
   - {fileID: -8053239854926592013, guid: cb400d7f6cc3b44bcbaeaf52c8af879c, type: 3}
   left_face_facered:
-  - {fileID: 6045316510006159469, guid: 14f569bf074ab4d45a226678883571da, type: 3}
-  - {fileID: -509341478395659641, guid: 14f569bf074ab4d45a226678883571da, type: 3}
-  - {fileID: -2417167366784512832, guid: 14f569bf074ab4d45a226678883571da, type: 3}
-  - {fileID: 6869139916874119399, guid: 14f569bf074ab4d45a226678883571da, type: 3}
+  - {fileID: 21300000, guid: 4412da4e8b666481182d4ec6f65b05e3, type: 3}
+  - {fileID: 21300000, guid: 246d44374536848b5bad41eb488adaab, type: 3}
+  - {fileID: 21300000, guid: db4f447a170ee44c1aad4bb745b2f2d1, type: 3}
+  - {fileID: 21300000, guid: 184beb10dc35b4b0181be9d0ff4ebb62, type: 3}
   right_face_facered:
   - {fileID: -6515452992075806010, guid: 38ed64544c98a4292bbc4bb0e76277e0, type: 3}
   - {fileID: -7498796219882022627, guid: 38ed64544c98a4292bbc4bb0e76277e0, type: 3}

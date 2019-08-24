@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: 286studio
-  productName: "\u8D77\u5E8A\u5566\uFF01"
+  productName: "\u53D9\u4E8B\u66F22\u95F9\u949F"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -278,7 +278,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 399a0e9c6f1274124b1b511b8a2e0fa2, type: 3}
+      m_Icon: {fileID: 2800000, guid: 09007c63b86d548a9a0b22cfb5999608, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

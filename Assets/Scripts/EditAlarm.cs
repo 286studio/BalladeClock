@@ -27,7 +27,6 @@ public class EditAlarm : MonoBehaviour
         time += " ";
 
         EditingAlarm.TimeString.text = time;
-        EditingAlarm.Id = Id;
         EditingAlarm.hr_dp_val = Hour_dropdown.getValue();
         EditingAlarm.min_dp_val = Minute_dropdown.getValue();
         EditingAlarm.ampm_dp_val = AMPM_dropdown.getValue();
@@ -41,6 +40,7 @@ public class EditAlarm : MonoBehaviour
         Notifications.RemoveAlarm(Id);
         // insert a new one
         Id = Notifications.AddAlarm(Hour_dropdown.getValue(), Minute_dropdown.getValue(), AMPM_dropdown.getValue(), Repeat_dropdown.value == 0, Label_input.text, Ringer_dropdown.value);
+        EditingAlarm.Id = Id;
         AlarmList.SaveAlarmListToFile();
         Swipable.allow_swipe = true;
         Destroy(gameObject);

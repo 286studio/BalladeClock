@@ -110,10 +110,10 @@ TextureImporter:
       name: general_bg_0
       rect:
         serializedVersion: 2
-        x: 107
-        y: 847
-        width: 1836
-        height: 358
+        x: 53
+        y: 424
+        width: 918
+        height: 179
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,50 +121,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a7bfb08a2bd746b48148e058d9f71d2
+      spriteID: 472d98579d2ff429fa2d7e386acf8a6b
       internalID: -6237855224227998935
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: general_bg_1
-      rect:
-        serializedVersion: 2
-        x: 1931
-        y: 1103
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc8bc42b5c667409d88d043263d76350
-      internalID: 5840650075824946947
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: general_bg_2
-      rect:
-        serializedVersion: 2
-        x: 183
-        y: 847
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c834c168b7cff47fb890c6e4caeecc53
-      internalID: 1052492429534780508
       vertices: []
       indices: 
       edges: []

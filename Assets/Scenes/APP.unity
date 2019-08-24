@@ -312,7 +312,7 @@ PrefabInstance:
     - target: {fileID: 5037246949583969916, guid: 460faf3e4f5e64d54bdbba10e695bc8d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 12.100919
+      value: 12.099994
       objectReference: {fileID: 0}
     - target: {fileID: 5037246949583969916, guid: 460faf3e4f5e64d54bdbba10e695bc8d,
         type: 3}
@@ -740,7 +740,7 @@ MonoBehaviour:
   Left: {fileID: 1175728737}
   Right: {fileID: 1769118926}
   GameSpace: {fileID: 1041461682}
-  Touch_pfx: {fileID: 3255145114169671222, guid: f79c88525e91640e99328ff40a0ad1fd,
+  Touch_pfx: {fileID: 3266570471454779592, guid: 28f401f29079e8843a8edc2246a28a44,
     type: 3}
   moving: 0
   mv_pos: 0
@@ -1134,7 +1134,7 @@ PrefabInstance:
     - target: {fileID: 8154802022305049948, guid: 508be7e139efc4e4a92cf7d7ec6f6de1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000061035156
+      value: 299.99994
       objectReference: {fileID: 0}
     - target: {fileID: 5922364636497351612, guid: 508be7e139efc4e4a92cf7d7ec6f6de1,
         type: 3}
@@ -1174,7 +1174,7 @@ PrefabInstance:
     - target: {fileID: 2413802239691197922, guid: 508be7e139efc4e4a92cf7d7ec6f6de1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 299.99994
       objectReference: {fileID: 0}
     - target: {fileID: 4647669224473643865, guid: 508be7e139efc4e4a92cf7d7ec6f6de1,
         type: 3}
