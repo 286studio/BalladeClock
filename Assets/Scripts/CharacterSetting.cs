@@ -17,6 +17,7 @@ public class CharacterSetting : MonoBehaviour
     public GameObject[] CostumeThumbs;
     [SerializeField] Sprite[] cxy_costumes;
     [SerializeField] Sprite[] tmm_costumes;
+    [SerializeField] Sprite[] swimsuits_locked;
     Sprite[][] costumes;
 
 
@@ -43,6 +44,13 @@ public class CharacterSetting : MonoBehaviour
     [SerializeField] AudioClip[] tmm_r_touched;
     [SerializeField] AudioClip[][][] voiceClips;
     [HideInInspector]public AudioSource Voice;
+
+    bool unlockSwimsuit;
+    public void UnlockSwimsuit()
+    {
+        unlockSwimsuit = true;
+        CostumeThumbs[4].GetComponent<Button>().onClick.AddListener(delegate { CostumeButtonPrtessed(4); });
+    }
 
     private void Awake()
     {
@@ -94,7 +102,7 @@ public class CharacterSetting : MonoBehaviour
             int j = i;
             CharacterButtons[i].onClick.AddListener(delegate { CharacterButtonPressed(j); });
         }
-        for (int i = 0; i < CostumeThumbs.Length; ++i)
+        for (int i = 0; i < (unlockSwimsuit ? CostumeThumbs.Length : CostumeThumbs.Length - 1); ++i)
         {
             int k = i;
             CostumeThumbs[i].GetComponent<Button>().onClick.AddListener(delegate { CostumeButtonPrtessed(k); });
@@ -109,6 +117,8 @@ public class CharacterSetting : MonoBehaviour
             Gamespace.Characters[curCharacter].GetComponentInChildren<CharacterSpriteManager>().show(-1, -1, 0);
             voice_bool = false;
         }
+
+        // if (Input.GetKeyDown(KeyCode.U)) UnlockSwimsuit();
     }
 
     public void Character_touched()
@@ -154,6 +164,7 @@ public class CharacterSetting : MonoBehaviour
         {
             CostumeThumbs[i].GetComponent<Image>().sprite = costumes[idx][i];
         }
+        if (!unlockSwimsuit) CostumeThumbs[4].GetComponent<Image>().sprite = swimsuits_locked[idx];
         CostumeSelectUI.GetComponent<Animator>().SetBool("open", true);
     }
 

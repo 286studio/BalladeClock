@@ -56,7 +56,7 @@ public class EditAlarm : MonoBehaviour
         }
         else
         {
-            tCount2 -= 15;
+            tCount2 -= 5;
             if (tCount2 < 0) tCount2 = 0;
         }
         // set buttons transparency
