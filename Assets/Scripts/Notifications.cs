@@ -105,8 +105,11 @@ public class Notifications : MonoBehaviour
         alarm_pfx_ins.transform.localScale *= 2;
         CharacterSetting._ins.disappear();
         for (int i = 0; i < 3; ++i) CharacterSetting._ins.Buttons[i].gameObject.SetActive(false);
-        Swipable.allow_swipe = false;
-    }
+
+        GameObject.FindGameObjectWithTag("EditAlarm")?.GetComponent<EditAlarm>().returnButtonClick();
+        if (AppManager.Prefabs[1].activeInHierarchy) AppManager.Prefabs[1].GetComponent<AddAlarm>().cancelButtonClick();
+		Swipable.allow_swipe = false;
+	}
 
     void AlarmUpdate()
     {

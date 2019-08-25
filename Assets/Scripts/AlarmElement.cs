@@ -56,14 +56,13 @@ public class AlarmElement : MonoBehaviour
     public void X_button_click()
     {
         // remove the ui element
+        Cover.SetActive(true);
         AlarmList.ui_alarmlist.Remove(gameObject);
-        // reorder the ui element list
-        AppManager.Prefabs[0].GetComponent<AlarmList>().Reorder();
         // remove the notification
         Notifications.RemoveAlarm(Id);
         AlarmList.SaveAlarmListToFile();
-        // destroy this ui element
-        Destroy(gameObject);
+        // Destroy(gameObject);
+        isDead = true;
     }
 
     const float outline_ratio = 2010f / 474f; // ratio of the image
@@ -97,5 +96,32 @@ public class AlarmElement : MonoBehaviour
         x_rt.sizeDelta *= ratio;
         var x_text = X_button.GetComponentInChildren<Text>();
         x_text.fontSize = (int)((float)x_text.fontSize * ratio);
+    }
+
+    bool isDead = false;
+    int deadCount = 255;
+    public GameObject Cover;
+    private void FixedUpdate()
+    {
+        if (isDead)
+        {
+            deadCount -= 5;
+            if (deadCount == 0)
+            {
+                // reorder the ui element list
+                AppManager.Prefabs[0].GetComponent<AlarmList>().Reorder();
+                Destroy(gameObject);
+            }
+            foreach (var i in GetComponentsInChildren<Image>())
+            {
+                if (i.name == "Cover") continue;
+                var c = i.color;
+                c.a = (float)deadCount / 255f;
+                i.color = c;
+            }
+            var tsc = TimeString.color;
+            tsc.a = (float)deadCount / 255f;
+            TimeString.color = tsc;
+        }
     }
 }

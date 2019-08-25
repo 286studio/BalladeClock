@@ -15,14 +15,16 @@ public class AddAlarm : MonoBehaviour
     public InputField Label_input; // input field
     public Button submitButton;
     public Button cancelButton;
+    public Button returnButton;
     // Start is called before the first frame update
     void Start()
     {
         submitButton.onClick.AddListener(submitButtonClick);
         cancelButton.onClick.AddListener(cancelButtonClick);
+        returnButton.onClick.AddListener(cancelButtonClick);
     }
 
-    void submitButtonClick()
+    public void submitButtonClick()
     {
         // AlarmList界面设为可见
         AppManager.Prefabs[0].SetActive(true);
@@ -56,7 +58,7 @@ public class AddAlarm : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    void cancelButtonClick()
+    public void cancelButtonClick()
     {
         AppManager.Prefabs[0].SetActive(true);
         Swipable.allow_swipe = true;
