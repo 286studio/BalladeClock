@@ -38,7 +38,7 @@ public class Swipable : MonoBehaviour
     {
         var p = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f));
         _BG_EndPoint = new Vector3(-(10.24f - p.x), 1.82f, 2f);
-        _BG_EndPoint = new Vector3(0, 1.82f, 2f);
+        _BG_StartPoint = new Vector3(0, 1.82f, 2f);
     }
 
     // Start is called before the first frame update
@@ -69,12 +69,15 @@ public class Swipable : MonoBehaviour
             {
                 moving = Moving.Right;
                 startTime = Time.time;
+                AppManager.Prefabs[0].GetComponent<AlarmList>().Return.gameObject.SetActive(false);
             }
 
             if (swipeLeft() && mv_pos == Moving.Right)
             {
                 moving = Moving.Left;
                 startTime = Time.time;
+                AppManager.Prefabs[0].GetComponent<AlarmList>().Return.gameObject.SetActive(false);
+                CharacterSetting._ins.disappear();
             }
         }
 
@@ -170,12 +173,12 @@ public class Swipable : MonoBehaviour
             startTime = -1;
             moving = Moving.None;
             mv_pos = Moving.Left;
+            AppManager.Prefabs[0].GetComponent<AlarmList>().Return.gameObject.SetActive(true);
         }
 
         // deal with game space
         GameSpace.transform.position = Vector3.Lerp(Vector3.zero, GS_EndPoint, fracJourney);
         Gamespace.Background.transform.position = Vector3.Lerp(BG_StartPoint, BG_EndPoint, fracJourney);
-        CharacterSetting._ins.disappear();
     }
 
     void moveRight()
@@ -193,6 +196,7 @@ public class Swipable : MonoBehaviour
             startTime = -1;
             moving = Moving.None;
             mv_pos = Moving.Right;
+            AppManager.Prefabs[0].GetComponent<AlarmList>().Return.gameObject.SetActive(true);
         }
 
         // deal with game space
