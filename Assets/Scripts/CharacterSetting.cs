@@ -141,10 +141,12 @@ public class CharacterSetting : MonoBehaviour
     {
         if (idx < 0) curBG = (curBG + 1) % BG_sprites.Length;
         else curBG = idx;
-        Swipable.BG_EndPoint.x += BG_offsets[curBG].x;
-        Swipable.BG_StartPoint.x += BG_offsets[curBG].x;
+        Swipable.BG_EndPoint.x = Swipable._BG_EndPoint.x + BG_offsets[curBG].x;
+        Swipable.BG_StartPoint.x = Swipable._BG_StartPoint.x + BG_offsets[curBG].x;
         Swipable.BG_EndPoint.y = BG_offsets[curBG].y;
         Swipable.BG_StartPoint.y = BG_offsets[curBG].y;
+        Swipable.BG_EndPoint.z = BG_offsets[curBG].z;
+        Swipable.BG_StartPoint.z = BG_offsets[curBG].z;
         Gamespace.Background.GetComponent<SpriteRenderer>().sprite = BG_sprites[curBG];
         Gamespace.Background.transform.position = Swipable.BG_StartPoint;
     }

@@ -38,7 +38,7 @@ public class Min_content : MonoBehaviour
         if (v < 50 && Input.touches.Length == 0)
         {
             var target = new Vector3(0, ((int)pos.y + 75) / 150 * 150);
-            rt.anchoredPosition3D = Vector3.MoveTowards(rt.anchoredPosition3D, target, 150 * Time.fixedDeltaTime);
+            rt.anchoredPosition3D = Vector3.MoveTowards(rt.anchoredPosition3D, target, 300 * Time.fixedDeltaTime);
         }
 
         // 当前分

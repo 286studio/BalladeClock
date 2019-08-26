@@ -57,7 +57,7 @@ public class AlarmList : MonoBehaviour
 
     private void Update()
     {
-        CurrentDate.text = "" + System.DateTime.Now.Year + "/" + System.DateTime.Now.Month + "/" + System.DateTime.Now.Day;
+        CurrentDate.text = System.DateTime.Now.Year + "/" + System.DateTime.Now.Month + "/" + System.DateTime.Now.Day;
         CurrentTime.text = System.DateTime.Now.ToShortTimeString();
     }
 

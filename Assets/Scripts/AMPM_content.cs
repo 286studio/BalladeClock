@@ -21,7 +21,7 @@ public class AMPM_content : MonoBehaviour
         var pos = rt.anchoredPosition3D;
         if (Input.touches.Length == 0)
         {
-            rt.anchoredPosition3D = Vector3.MoveTowards(rt.anchoredPosition3D, new Vector3(0f, pos.y > 75f ? 150f : 0f, 0f), 50 * Time.fixedDeltaTime);
+            rt.anchoredPosition3D = Vector3.MoveTowards(rt.anchoredPosition3D, new Vector3(0f, pos.y > 75f ? 150f : 0f, 0f), 300 * Time.fixedDeltaTime);
         }
 
 		// 当前时

@@ -465,6 +465,7 @@ GameObject:
   - component: {fileID: 459374120}
   - component: {fileID: 459374122}
   - component: {fileID: 459374121}
+  - component: {fileID: 459374123}
   m_Layer: 5
   m_Name: MainUI_Time
   m_TagString: Untagged
@@ -513,9 +514,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 66918b82540ae4ee4b1bb33aa9f57874, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 150
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 150
@@ -534,6 +535,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459374119}
   m_CullTransparentMesh: 0
+--- !u!114 &459374123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459374119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +778,7 @@ GameObject:
   - component: {fileID: 656308028}
   - component: {fileID: 656308030}
   - component: {fileID: 656308029}
+  - component: {fileID: 656308031}
   m_Layer: 5
   m_Name: Date
   m_TagString: Untagged
@@ -785,8 +802,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -113}
-  m_SizeDelta: {x: 400, y: 100}
+  m_AnchoredPosition: {x: 8, y: -120}
+  m_SizeDelta: {x: 800, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &656308029
 MonoBehaviour:
@@ -809,19 +826,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 66918b82540ae4ee4b1bb33aa9f57874, type: 3}
-    m_FontSize: 64
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 85
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 64
+    m_MaxSize: 128
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1999/12/31
+  m_Text: "1999\u5E7412\u670831\u65E5"
 --- !u!222 &656308030
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -830,6 +847,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656308027}
   m_CullTransparentMesh: 0
+--- !u!114 &656308031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656308027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 6, y: -6}
+  m_UseGraphicAlpha: 1
 --- !u!1 &756027005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3304069007706920945, guid: 8a5cad230e5544049ae24ccf8ce3fbea,
@@ -1134,7 +1166,7 @@ PrefabInstance:
     - target: {fileID: 8154802022305049948, guid: 508be7e139efc4e4a92cf7d7ec6f6de1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 300
+      value: 0.0001373291
       objectReference: {fileID: 0}
     - target: {fileID: 5922364636497351612, guid: 508be7e139efc4e4a92cf7d7ec6f6de1,
         type: 3}
@@ -1174,7 +1206,7 @@ PrefabInstance:
     - target: {fileID: 2413802239691197922, guid: 508be7e139efc4e4a92cf7d7ec6f6de1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 300
+      value: 0.000076293945
       objectReference: {fileID: 0}
     - target: {fileID: 4647669224473643865, guid: 508be7e139efc4e4a92cf7d7ec6f6de1,
         type: 3}

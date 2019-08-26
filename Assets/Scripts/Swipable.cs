@@ -26,6 +26,9 @@ public class Swipable : MonoBehaviour
     static public Vector3 BG_EndPoint;
     static public Vector3 BG_StartPoint;
 
+    static public Vector3 _BG_EndPoint;
+    static public Vector3 _BG_StartPoint;
+
     static public bool external_swipe_left;
     static public bool external_swipe_right;
     static public bool allow_swipe;
@@ -34,8 +37,8 @@ public class Swipable : MonoBehaviour
     private void Awake()
     {
         var p = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f));
-        BG_EndPoint = new Vector3(-(10.24f - p.x), 1.82f, 2f);
-        BG_StartPoint = new Vector3(0, 1.82f, 2f);
+        _BG_EndPoint = new Vector3(-(10.24f - p.x), 1.82f, 2f);
+        _BG_EndPoint = new Vector3(0, 1.82f, 2f);
     }
 
     // Start is called before the first frame update
