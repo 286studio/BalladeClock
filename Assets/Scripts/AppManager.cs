@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AppManager : MonoBehaviour
 {
@@ -15,5 +16,26 @@ public class AppManager : MonoBehaviour
         Prefabs = Prefabs_loader;
         AdjustedWidth = DefaultRes.y * Screen.width / Screen.height;
         Application.targetFrameRate = 60; // FPS改到60
+        TouchScreenKeyboard.hideInput = true; // hide input box on the keypad
+    }
+
+    public static void MainTimeToBlack()
+    {
+        var MainTime = GameObject.Find("MainUI_Time");
+        foreach (var t in MainTime.GetComponentsInChildren<Text>())
+        {
+            t.color = Color.black;
+            t.GetComponent<Shadow>().enabled = false;
+        }
+    }
+
+    public static void MainTimeToWhite()
+    {
+        var MainTime = GameObject.Find("MainUI_Time");
+        foreach (var t in MainTime.GetComponentsInChildren<Text>())
+        {
+            t.color = Color.white;
+            t.GetComponent<Shadow>().enabled = true;
+        }
     }
 }

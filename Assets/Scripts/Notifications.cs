@@ -37,7 +37,7 @@ public class Notifications : MonoBehaviour
     static string[] bodyStrings = {
         "不忘列车经历的风景\r\n追逐前方的光影\r\n直到终点将来临\r\n看那时漫天落英",
         "啊—————— 啊——————",
-        "你是不是天天都在看什么很黄很暴力都东西啊",
+        "你是不是天天都在看什么很黄很暴力的东西啊",
     };
 
     // alarm variables

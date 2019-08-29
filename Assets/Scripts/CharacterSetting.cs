@@ -102,7 +102,8 @@ public class CharacterSetting : MonoBehaviour
             int j = i;
             CharacterButtons[i].onClick.AddListener(delegate { CharacterButtonPressed(j); });
         }
-        for (int i = 0; i < (unlockSwimsuit ? CostumeThumbs.Length : CostumeThumbs.Length - 1); ++i)
+        // for (int i = 0; i < (unlockSwimsuit ? CostumeThumbs.Length : CostumeThumbs.Length - 1); ++i)
+        for (int i = 0; i < 2; ++i)
         {
             int k = i;
             CostumeThumbs[i].GetComponent<Button>().onClick.AddListener(delegate { CostumeButtonPrtessed(k); });
@@ -168,6 +169,7 @@ public class CharacterSetting : MonoBehaviour
         }
         if (!unlockSwimsuit) CostumeThumbs[4].GetComponent<Image>().sprite = swimsuits_locked[idx];
         CostumeSelectUI.GetComponent<Animator>().SetBool("open", true);
+        Swipable.allow_swipe = false;
     }
 
     public void CostumeButtonPrtessed(int idx)
@@ -219,19 +221,20 @@ public class CharacterSetting : MonoBehaviour
         float spacer = 120f * AppManager.AdjustedWidth / AppManager.DefaultRes.x;
         var rt = Buttons[0].GetComponent<RectTransform>();
         var pos = rt.anchoredPosition;
-        pos.x = AppManager.AdjustedWidth / 2 - 2 * spacer - 150;
+        //pos.x = AppManager.AdjustedWidth / 2 - 2 * spacer - 150;
+        pos.x = -(AppManager.AdjustedWidth / 2 - 2 * spacer - 120); 
         pos.y = -(AppManager.DefaultRes.y / 2 - spacer);
         rt.anchoredPosition = pos;
 
         rt = Buttons[1].GetComponent<RectTransform>();
         pos = rt.anchoredPosition;
-        pos.x = -(AppManager.AdjustedWidth / 2 - spacer);
+        pos.x = AppManager.AdjustedWidth / 2 - spacer;
         pos.y = -(AppManager.DefaultRes.y / 2 - spacer);
         rt.anchoredPosition = pos;
 
         rt = Buttons[2].GetComponent<RectTransform>();
         pos = rt.anchoredPosition;
-        pos.x = AppManager.AdjustedWidth / 2 - spacer;
+        pos.x = -(AppManager.AdjustedWidth / 2 - spacer);
         pos.y = -(AppManager.DefaultRes.y / 2 - spacer);
         rt.anchoredPosition = pos;
 

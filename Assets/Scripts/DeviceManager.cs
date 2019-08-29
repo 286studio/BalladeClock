@@ -9,6 +9,9 @@ public class DeviceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+#if UNITY_EDITOR
+        return;
+#endif
         print(Device.generation);
         switch (Device.generation)
         {
@@ -27,7 +30,8 @@ public class DeviceManager : MonoBehaviour
             case DeviceGeneration.iPhoneXSMax:
                 break;
             default:
-                AppManager.Prefabs[0].SetActive(false);
+                GameObject.Find("Swipable").SetActive(false);
+                GameObject.Find("GameSpaceObjects").SetActive(false);
                 imcompatible.SetActive(true);
                 break;
         }

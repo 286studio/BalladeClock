@@ -94,13 +94,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 567ff23cdce1b4375bf48c301b8dda0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EditAlarmPrefab: {fileID: 7960077298905545307, guid: 8360ff83f664d4a80a8d29aeb4097cde,
+  EditAlarmPrefab: {fileID: 7960077298905545307, guid: 35ded36d535c94812b07718848c0efb5,
     type: 3}
   Profile: {fileID: 7920693989799517375}
   profile_sprites:
   - {fileID: 21300000, guid: 9f2dea5675ff64d77bd32ba03731aa19, type: 3}
   - {fileID: 21300000, guid: 9f2dea5675ff64d77bd32ba03731aa19, type: 3}
-  - {fileID: 21300000, guid: 253aebf55ae5147c696270aedf5ae697, type: 3}
+  - {fileID: -3904460871944948006, guid: 253aebf55ae5147c696270aedf5ae697, type: 3}
   TimeString: {fileID: 2221472289083113702}
   Edit_button: {fileID: 6489470588327120204}
   X_button: {fileID: 6510184846784199700}
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 72
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 96

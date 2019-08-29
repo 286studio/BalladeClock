@@ -87,7 +87,7 @@ public class Swipable : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             var pfx = Instantiate(Touch_pfx, GameObject.Find(mv_pos == Moving.Left ? "Swipable_right" : "Swipable_left").transform);
-            pfx.transform.localScale = 100 * Vector3.one;
+            pfx.transform.localScale = 120 * Vector3.one;
             pfx.GetComponent<RectTransform>().anchoredPosition = (Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2)) * AppManager.DefaultRes.y / Screen.height;
         }
 #endif
@@ -97,7 +97,7 @@ public class Swipable : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 var pfx = Instantiate(Touch_pfx, GameObject.Find(mv_pos == Moving.Left ? "Swipable_right" : "Swipable_left").transform);
-                pfx.transform.localScale = 100 * Vector3.one; // 放大点击特效 // 原来是200
+                pfx.transform.localScale = 120 * Vector3.one; // 放大点击特效 // 原来是200
                 pfx.GetComponent<RectTransform>().anchoredPosition = (touch.position - new Vector2(Screen.width / 2, Screen.height / 2)) * AppManager.DefaultRes.y / Screen.height;
             }
         }

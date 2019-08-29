@@ -35,7 +35,7 @@ public class AlarmList : MonoBehaviour
         aa.Minute_dropdown.setValue(System.DateTime.Now.Minute);
         aa.AMPM_dropdown.setValue((System.DateTime.Now.Hour >= 12) ? 1 : 0);
         Swipable.allow_swipe = false;
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     public void Reorder()
@@ -133,6 +133,12 @@ public class AlarmList : MonoBehaviour
                 ui_alarmlist.Add(newAlarm);
             }
         }
-        else iOSNotificationCenter.RemoveAllScheduledNotifications(); // first time open app;
+        else
+        {
+            // first time open app;
+            iOSNotificationCenter.RemoveAllScheduledNotifications();
+            if (!Tutorial.playedTutorial) Instantiate(AppManager.Prefabs[3], GameObject.Find("Tut").transform);
+            SaveAlarmListToFile();
+        }
     }
 }

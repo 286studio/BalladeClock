@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 73d3bb690f10b4af793926fda8da76ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71a4fac82ba22482d838bbe2b94b44ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,28 +133,28 @@ MonoBehaviour:
   Figure: {fileID: 3304069007629386355}
   Face: {fileID: 3304069008315336019}
   middle_sprites1:
-  - {fileID: 21300000, guid: 73d3bb690f10b4af793926fda8da76ee, type: 3}
-  - {fileID: 21300000, guid: 4f3d7c1f61bd346c0ac32dcd28161cce, type: 3}
-  - {fileID: 21300000, guid: 60f4e9a89f2334cdbb37599a39e2d0e4, type: 3}
   - {fileID: 21300000, guid: 71a4fac82ba22482d838bbe2b94b44ba, type: 3}
+  - {fileID: 21300000, guid: 73d3bb690f10b4af793926fda8da76ee, type: 3}
+  - {fileID: 21300000, guid: 60f4e9a89f2334cdbb37599a39e2d0e4, type: 3}
+  - {fileID: 21300000, guid: 4f3d7c1f61bd346c0ac32dcd28161cce, type: 3}
   - {fileID: 21300000, guid: daad515b6c6d347d1b511f75833bb4fc, type: 3}
   middle_sprites2:
-  - {fileID: 21300000, guid: b745e01afe526445f9935e59ef61d1ef, type: 3}
-  - {fileID: 21300000, guid: 2c07b1e4b052d405eac34ca135637fc9, type: 3}
-  - {fileID: 21300000, guid: e4a62f9ea301c49b6bf4aa59724fae91, type: 3}
   - {fileID: 21300000, guid: c0cdb01b7b7c64105a7bc1486372c27e, type: 3}
+  - {fileID: 21300000, guid: b745e01afe526445f9935e59ef61d1ef, type: 3}
+  - {fileID: 21300000, guid: e4a62f9ea301c49b6bf4aa59724fae91, type: 3}
+  - {fileID: 21300000, guid: 2c07b1e4b052d405eac34ca135637fc9, type: 3}
   - {fileID: 21300000, guid: a7fc2bbbf6d2c447e8f09ee0af675cf9, type: 3}
   left_sprites:
-  - {fileID: 21300000, guid: d40a3f7d589874729a4d10fd66fcbf4a, type: 3}
-  - {fileID: 21300000, guid: c670f371321674ed5886b6e3de9492b2, type: 3}
-  - {fileID: 21300000, guid: 28956cce1fc484a94b101b6366f5ea9c, type: 3}
   - {fileID: 21300000, guid: e3056745991c24db090b9a96cf805ad3, type: 3}
+  - {fileID: 21300000, guid: d40a3f7d589874729a4d10fd66fcbf4a, type: 3}
+  - {fileID: 21300000, guid: 28956cce1fc484a94b101b6366f5ea9c, type: 3}
+  - {fileID: 21300000, guid: c670f371321674ed5886b6e3de9492b2, type: 3}
   - {fileID: 21300000, guid: 2f52a42db6fc8459d85316963433b0e7, type: 3}
   right_sprites:
-  - {fileID: 21300000, guid: 5364c076f630545a4a5e456553339def, type: 3}
-  - {fileID: 21300000, guid: 6f3ec870bd6ab4d109adb57d3271d433, type: 3}
-  - {fileID: 21300000, guid: 883ded329363b410782073256f18344e, type: 3}
   - {fileID: 21300000, guid: 31284460e69184ff7965570737408714, type: 3}
+  - {fileID: 21300000, guid: 5364c076f630545a4a5e456553339def, type: 3}
+  - {fileID: 21300000, guid: 883ded329363b410782073256f18344e, type: 3}
+  - {fileID: 21300000, guid: 6f3ec870bd6ab4d109adb57d3271d433, type: 3}
   - {fileID: 21300000, guid: e1c9441836d45440ab5877d7240b15c1, type: 3}
   middle_face1:
   - {fileID: 21300000, guid: 305d1fe9e25cb4f9b86d9090e0ee4444, type: 3}
