@@ -29,4 +29,4 @@ Compress method要选成LZ4HC，不然包体会很大。
 
 如果需要实机测试，把左上角的Generic iOS Device改成自己的手机，点击运行即可。
 
-
+如果需要iOS模拟器测试，Google Unity iOS simulator。
