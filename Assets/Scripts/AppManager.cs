@@ -21,8 +21,6 @@ public class AppManager : MonoBehaviour
         Application.targetFrameRate = 60; // FPS改到60
         TouchScreenKeyboard.hideInput = true; // hide input box on the keypad
         isIPad = (float)Screen.width / Screen.height > DefaultRes.x / DefaultRes.y;
-        print(Screen.width + "x" + Screen.height + " Ratio: " + (float)Screen.width / Screen.height + " Default Ratio: " + DefaultRes.x / DefaultRes.y);
-        print(isIPad);
     }
 
     public static void MainTimeToBlack()
