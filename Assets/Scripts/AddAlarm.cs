@@ -17,12 +17,14 @@ public class AddAlarm : MonoBehaviour
     public Button cancelButton;
     public Button returnButton;
     public GameObject BG;
+    public GameObject AllText;
     public Image MaskBG;
     bool Entering;
     bool Exiting;
     bool MaskIn = false;
     bool MaskOut = false;
     int MaskCount = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +32,13 @@ public class AddAlarm : MonoBehaviour
         cancelButton.onClick.AddListener(cancelButtonClick);
         returnButton.onClick.AddListener(cancelButtonClick);
 
-        GetComponent<RectTransform>().localScale *= (AppManager.AdjustedWidth / AppManager.DefaultRes.x);
+        var scaleMul = AppManager.AdjustedWidth / AppManager.DefaultRes.x;
+        GetComponent<RectTransform>().localScale *= scaleMul;
+        if (AppManager.isIPad)
+        {
+            (AllText.transform as RectTransform).localScale /= scaleMul;
+            (AllText.transform as RectTransform).localScale *= 1.25f;
+        }
     }
 
 

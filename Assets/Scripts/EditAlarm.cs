@@ -17,6 +17,7 @@ public class EditAlarm : MonoBehaviour
     public Button submitButton;
     public Button cancelButton;
     public GameObject BG;
+    public GameObject AllText;
     public Image MaskBG;
     bool Entering;
     bool Exiting;
@@ -29,7 +30,13 @@ public class EditAlarm : MonoBehaviour
         submitButton.onClick.AddListener(submitButtonClick);
         cancelButton.onClick.AddListener(deleteButtonClick);
 
-        GetComponent<RectTransform>().localScale *= (AppManager.AdjustedWidth / AppManager.DefaultRes.x);
+        var scaleMul = AppManager.AdjustedWidth / AppManager.DefaultRes.x;
+        GetComponent<RectTransform>().localScale *= scaleMul;
+        if (AppManager.isIPad)
+        {
+            (AllText.transform as RectTransform).localScale /= scaleMul;
+            (AllText.transform as RectTransform).localScale *= 1.25f;
+        }
 
         Entering = true;
         MaskIn = true;
