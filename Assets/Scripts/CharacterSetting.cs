@@ -17,10 +17,12 @@ public class CharacterSetting : MonoBehaviour
     public GameObject[] CostumeThumbs;
     [SerializeField] Sprite[] cxy_costumes;
     [SerializeField] Sprite[] tmm_costumes;
+    [SerializeField] Sprite[] ry_costumes;
+    [SerializeField] Sprite[] ck_costumes;
     Sprite[][] costumes;
 
 
-    const int numCharacter = 2;
+    const int numCharacter = 4;
     [HideInInspector]
     public int curCharacter; // 0 = cxy, 1 = tmm
     public int curCostume;
@@ -41,6 +43,14 @@ public class CharacterSetting : MonoBehaviour
     [SerializeField] AudioClip[] tmm_m2_touched;
     [SerializeField] AudioClip[] tmm_l_touched;
     [SerializeField] AudioClip[] tmm_r_touched;
+    [SerializeField] AudioClip[] ry_m1_touched;
+    [SerializeField] AudioClip[] ry_m2_touched;
+    [SerializeField] AudioClip[] ry_l_touched;
+    [SerializeField] AudioClip[] ry_r_touched;
+    [SerializeField] AudioClip[] ck_m1_touched;
+    [SerializeField] AudioClip[] ck_m2_touched;
+    [SerializeField] AudioClip[] ck_l_touched;
+    [SerializeField] AudioClip[] ck_r_touched;
     [SerializeField] AudioClip[][][] voiceClips;
     [HideInInspector]public AudioSource Voice;
 
@@ -51,7 +61,9 @@ public class CharacterSetting : MonoBehaviour
         Voice = gameObject.AddComponent<AudioSource>();
         var cxt_voices_touched = new AudioClip[4][] { cxt_m1_touched, cxt_m2_touched, cxt_l_touched, cxt_r_touched };
         var tmm_voices_touched = new AudioClip[4][] { tmm_m1_touched, tmm_m2_touched, tmm_l_touched, tmm_r_touched };
-        voiceClips = new AudioClip[2][][] { cxt_voices_touched, tmm_voices_touched };
+        var ry_voices_touched = new AudioClip[4][] { ry_m1_touched, ry_m2_touched, ry_l_touched, ry_r_touched };
+        var ck_voices_touched = new AudioClip[4][] { ck_m1_touched, ck_m2_touched, ck_l_touched, ck_r_touched };
+        voiceClips = new AudioClip[numCharacter][][] { cxt_voices_touched, tmm_voices_touched, ry_voices_touched, ck_voices_touched };
     }
 
     private void Start()
@@ -59,7 +71,7 @@ public class CharacterSetting : MonoBehaviour
         LoadSettingFromFile();
         Buttons[3].gameObject.SetActive(false);
 
-        costumes = new Sprite[numCharacter][] { cxy_costumes, tmm_costumes };
+        costumes = new Sprite[numCharacter][] { cxy_costumes, tmm_costumes, ry_costumes, ck_costumes };
 
         // new UI
         ButtonAdjuster();
@@ -148,6 +160,7 @@ public class CharacterSetting : MonoBehaviour
     {
         curCharacter = idx;
         Gamespace.Characters[curCharacter].SetActive(true);
+        Gamespace.Characters[curCharacter].GetComponent<CharacterSpriteManager>().show(-1, -1, -1);
         for (int i = 0; i < numCharacter; ++i) if (curCharacter != i) Gamespace.Characters[i].SetActive(false);
         SaveSettingToFile();
     }
@@ -157,7 +170,15 @@ public class CharacterSetting : MonoBehaviour
         switchCharacter(idx);
         for (int i = 0; i < CostumeThumbs.Length; ++i)
         {
-            CostumeThumbs[i].GetComponent<Image>().sprite = costumes[idx][i];
+            if (i < costumes[idx].Length)
+            {
+                CostumeThumbs[i].SetActive(true);
+                CostumeThumbs[i].GetComponent<Image>().sprite = costumes[idx][i];
+            }
+            else
+            {
+                CostumeThumbs[i].SetActive(false);
+            }
         }
         CostumeSelectUI.GetComponent<Animator>().SetBool("open", true);
         Swipable.allow_swipe = false;

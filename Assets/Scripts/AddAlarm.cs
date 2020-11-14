@@ -179,7 +179,7 @@ public class AddAlarm : MonoBehaviour
         ae.ampm_dp_val = AMPM_dropdown.getValue();
         ae.repeat_dp_val = Repeat_dropdown.value;
         ae.label_if_val = Label_input.text;
-        ae.Id = Notifications.AddAlarm(ae.hr_dp_val, ae.min_dp_val, ae.ampm_dp_val, ae.repeat_dp_val == 0, ae.label_if_val, ae.ringer_dp_val);
+        ae.Id = Notifications.AddAlarm(ae.hr_dp_val, ae.min_dp_val, ae.ampm_dp_val, ae.repeat_dp_val == 1, ae.label_if_val, ae.ringer_dp_val);
 
         // add the alarm to list
         AlarmList.ui_alarmlist.Add(newAlarm);

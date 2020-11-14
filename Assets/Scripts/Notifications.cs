@@ -15,21 +15,27 @@ public class Notifications : MonoBehaviour
     {
         "陈星瑶",
         "陈星瑶",
-        "谈明美"
+        "谈明美",
+        "李若瑜",
+        "程可"
     };
 
     static string[] soundFileNames =
     {
         "cxy_alarm1.wav",
         "cxy_alarm2.wav",
-        "tmm_alarm1.wav"
+        "tmm_alarm1.wav",
+        "ry_alarm1.mp3",
+        "ck_alarm1.mp3"
     };
 
     static string[] CategoryIdentifiers =
     {
         "cxy",
         "cxy",
-        "tmm"
+        "tmm",
+        "ry",
+        "ck"
     };
 
     string curRespondNotificationIdentifier;
@@ -38,6 +44,8 @@ public class Notifications : MonoBehaviour
         "不忘列车经历的风景\r\n追逐前方的光影\r\n直到终点将来临\r\n看那时漫天落英",
         "啊—————— 啊——————",
         "你是不是天天都在看什么很黄很暴力的东西啊",
+        "哈哈，哈哈，哈哈哈……",
+        "好啦好啦，时间很晚了。"
     };
 
     // alarm variables
@@ -158,7 +166,7 @@ public class Notifications : MonoBehaviour
             StartAlarm((int)t.Hour, (int)t.Minute);
 
             // go to character's page
-            int curCharacter = ln.CategoryIdentifier == "cxy" ? 0 : 1;
+            int curCharacter = GetCharacterFromCategoryIdentifier(ln.CategoryIdentifier);
             CharacterSetting._ins.switchCharacter(curCharacter);
             Gamespace.Characters[curCharacter].GetComponentInChildren<CharacterSpriteManager>().showAlarm(r);
             Swipable.external_swipe_right = true;
@@ -175,7 +183,7 @@ public class Notifications : MonoBehaviour
         SoundPlayer.clip = Ringers[r];
         SoundPlayer.Play();
         StartAlarm(System.DateTime.Now.Hour, System.DateTime.Now.Minute);
-        int curCharacter = ln.CategoryIdentifier == "cxy" ? 0 : 1;
+        int curCharacter = GetCharacterFromCategoryIdentifier(ln.CategoryIdentifier);
         CharacterSetting._ins.switchCharacter(curCharacter);
         Gamespace.Characters[curCharacter].GetComponentInChildren<CharacterSpriteManager>().showAlarm(r);
         Swipable.external_swipe_right = true;
@@ -184,7 +192,19 @@ public class Notifications : MonoBehaviour
 
     int getRinger(string clipName)
     {
-        for (int i = 0; i < soundFileNames.Length; ++i) if (soundFileNames[i] == clipName)return i;
+        for (int i = 0; i < soundFileNames.Length; ++i) if (soundFileNames[i] == clipName) return i;
+        return 0;
+    }
+
+    int GetCharacterFromCategoryIdentifier(string id)
+    {
+        switch (id)
+        {
+            case "cxy": return 0;
+            case "tmm": return 1;
+            case "ry": return 2;
+            case "ck": return 3;
+        }
         return 0;
     }
 

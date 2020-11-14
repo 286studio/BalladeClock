@@ -70,7 +70,7 @@ public class CharacterSpriteManager : MonoBehaviour
         if (pose >= 0) pose_idx = pose;
         if (pose == -2) pose_idx = (pose_idx + Random.Range(1, 3)) % 4;
         if (costumes >= 0) costumes_idx = costumes;
-        Figure.GetComponent<SpriteRenderer>().sprite = sprites[pose_idx][costumes_idx];
+        Figure.GetComponent<SpriteRenderer>().sprite = sprites[pose_idx][costumes_idx % sprites[pose_idx].Length];
         Face.GetComponent<RectTransform>().anchoredPosition = facePositions[pose_idx];
         return pose_idx;
     }
@@ -88,6 +88,12 @@ public class CharacterSpriteManager : MonoBehaviour
                 break;
             case 2: // 谭明美：很黄很暴力
                 show(3, -1, 1);
+                break;
+            case 3: // 李若瑜：哈哈哈哈
+                show(2, -1, 1);
+                break;
+            case 4: // 程可：时间很晚了
+                show(2, -1, 1);
                 break;
         }
     }

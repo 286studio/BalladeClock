@@ -185,7 +185,7 @@ public class EditAlarm : MonoBehaviour
         // cancel the old one
         Notifications.RemoveAlarm(Id);
         // insert a new one
-        Id = Notifications.AddAlarm(Hour_dropdown.getValue(), Minute_dropdown.getValue(), AMPM_dropdown.getValue(), Repeat_dropdown.value == 0, Label_input.text, Ringer_dropdown.value);
+        Id = Notifications.AddAlarm(Hour_dropdown.getValue(), Minute_dropdown.getValue(), AMPM_dropdown.getValue(), Repeat_dropdown.value == 1, Label_input.text, Ringer_dropdown.value);
         EditingAlarm.Id = Id;
         AlarmList.SaveAlarmListToFile();
         Swipable.allow_swipe = true;
