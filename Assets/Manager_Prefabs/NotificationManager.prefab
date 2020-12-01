@@ -47,5 +47,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2fa9b77a2232347d2b31d749ebd9f44c, type: 3}
   - {fileID: 8300000, guid: dedaabce91bef48ba90c0add8b0dcc54, type: 3}
   - {fileID: 8300000, guid: 600231965a92549049ec9eeb7dbe5cc1, type: 3}
+  - {fileID: 8300000, guid: 58028c90c5e763448a964abed2cffcf5, type: 3}
+  - {fileID: 8300000, guid: ee6fea0ad0d111343ad2fb1c56dacac4, type: 3}
   _alarm_pfx: {fileID: 3668968894058701376, guid: 811b849bf8f994af88e1e69bf9bf6779,
     type: 3}
